@@ -18,20 +18,50 @@ const youtrack = new Youtrack(config);
 
 youtrack.login().then(() => {
 
+    // get the current user
     youtrack.users.current().then((currentUser) => {
         console.log({currentUser});
     });
 
+    // get a user by his/her login name
     youtrack.users.byName('test').then((user) => {
         console.log({user});
     });
 
+    // get all saved searches
     youtrack.searches.saved().then((savedSearches) => {
         console.log({savedSearches});
     });
 
+    // get all tags
     youtrack.tags.all().then((tags) => {
         console.log({tags});
+    });
+    
+    // get all projects
+    youtrack.projects.all().then((projects) => {
+        console.dir(projects);
+        console.dir(projects[0]);
+    });
+
+    // get an issue by its id
+    youtrack.issues.byId('T1-2').then((issue) => {
+        console.dir(issue);
+    });
+
+    // search issues with a filter query
+    youtrack.issues.search('#Unresolved').then((issues) => {
+        console.dir(issues);
+    });
+
+    // search issues with a filter query and additional filter options (available are: max, with, after)
+    youtrack.issues.search('#Bug', {max: 1}).then((issues) => {
+        console.dir(issues);
+    });
+
+    // delete issue with given id
+    youtrack.issues.delete('T1-3').then(() => {
+        console.log('deleted issue T1-3');
     });
 });
 

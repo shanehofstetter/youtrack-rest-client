@@ -16,6 +16,8 @@ export interface YoutrackClient {
 
     post(url: string, params?: {}): RequestPromise;
 
+    delete(url: string, params?: {}): RequestPromise;
+
     readonly users: UserEndpoint;
     readonly searches: SearchEndpoint;
     readonly tags: TagEndpoint;
@@ -84,5 +86,9 @@ export class Youtrack implements YoutrackClient {
 
     public get(url: string, params: {} = {}): RequestPromise {
         return request.get(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
+    }
+
+    public delete(url: string, params: {} = {}): RequestPromise {
+        return request.delete(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
     }
 }

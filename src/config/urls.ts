@@ -5,5 +5,6 @@ export namespace urls {
     export const SAVED_SEARCHES: string = '/user/search';
     export const TAGS: string = '/user/tag';
     export const ISSUE: string = '/issue/{issue}';
+    export const ISSUE_SEARCH: string = '/issue';
     export const PROJECTS: string = '/project/all';
 }
