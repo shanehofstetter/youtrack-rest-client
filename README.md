@@ -16,7 +16,12 @@ npm install youtrack-rest-client
 ```typescript
 import {Youtrack} from "youtrack-rest-client";
 
+// option 1: login with username and password
 const config = {baseUrl: "http://example.myjetbrains.com", login: "login", password: "password"};
+
+// option 2: authenticate with token
+// const config = {baseUrl: "http://example.myjetbrains.com", token: "perm:your-token"};
+
 
 const youtrack = new Youtrack(config);
 

@@ -15,7 +15,7 @@ export class BaseEndpoint {
         return Promise.resolve(request.then(response => {
             return response;
         }).catch(error => {
-            return Promise.reject(error.message);
+            return Promise.reject(error);
         }));
     }
 }

@@ -1,4 +1,9 @@
-import {instanceOfYoutrackLoginOptions, YoutrackLoginOptions, YoutrackTokenOptions} from "./options/youtrack_options";
+import {
+    instanceOfYoutrackLoginOptions,
+    instanceOfYoutrackTokenOptions,
+    YoutrackLoginOptions,
+    YoutrackTokenOptions
+} from "./options/youtrack_options";
 import * as request from "request-promise";
 import {urls} from "./config/urls";
 import {RequestPromise} from "request-promise";
@@ -33,7 +38,7 @@ export class Youtrack implements YoutrackClient {
     private loggedIn: boolean = false;
     private readonly baseUrl: string;
     private defaultRequestOptions: object = {jar: true, json: true};
-    private credentials: YoutrackLoginOptions | YoutrackTokenOptions;
+    private credentials: YoutrackLoginOptions | YoutrackTokenOptions | null = null;
     public readonly users: UserEndpoint;
     public readonly searches: SearchEndpoint;
     public readonly tags: TagEndpoint;
@@ -41,10 +46,16 @@ export class Youtrack implements YoutrackClient {
     public readonly projects: ProjectEndpoint;
 
     public constructor(options: YoutrackLoginOptions | YoutrackTokenOptions) {
-        if (!instanceOfYoutrackLoginOptions(options)) {
-            throw new Error("token login not supported at the moment");
+        if (instanceOfYoutrackTokenOptions(options)) {
+            this.defaultRequestOptions = {
+                ...this.defaultRequestOptions,
+                headers: {
+                    Authorization: `Bearer ${options.token}`
+                }
+            };
+        } else {
+            this.credentials = options;
         }
-        this.credentials = options;
         this.baseUrl = this.formBaseUrl(options.baseUrl);
         this.users = new UserEndpoint(this);
         this.searches = new SearchEndpoint(this);

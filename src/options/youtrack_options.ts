@@ -12,5 +12,9 @@ export interface YoutrackTokenOptions extends YoutrackOptions {
 }
 
 export function instanceOfYoutrackLoginOptions(object: any): object is YoutrackLoginOptions {
-    return "login" in object && "password" in object;
+    return !!object && "login" in object && "password" in object;
+}
+
+export function instanceOfYoutrackTokenOptions(object: any): object is YoutrackTokenOptions {
+    return !!object && "token" in object;
 }
