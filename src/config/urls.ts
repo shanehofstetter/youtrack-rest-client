@@ -7,4 +7,5 @@ export namespace urls {
     export const ISSUE: string = '/issue/{issue}';
     export const ISSUES: string = '/issue';
     export const PROJECTS: string = '/project/all';
+    export const PROJECT: string = '/admin/project/{projectId}';
 }
