@@ -2,6 +2,8 @@
 Client library for accessing the youtrack rest api
 
 [![Build Status](https://travis-ci.com/shanehofstetter/youtrack-rest-client.svg?branch=master)](https://travis-ci.com/shanehofstetter/youtrack-rest-client)
+![npm](https://img.shields.io/npm/v/youtrack-rest-client.svg)
+![NpmLicense](https://img.shields.io/npm/l/youtrack-rest-client.svg)
 
 
 ## Install
