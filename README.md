@@ -63,6 +63,11 @@ youtrack.users.byName('test').then((user) => {
     console.log({user});
 });
 
+```
+
+### Searches
+```typescript
+
 // get all saved searches
 youtrack.searches.saved().then((savedSearches) => {
     console.log({savedSearches});

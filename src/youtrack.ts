@@ -40,7 +40,6 @@ interface RequestOptions {
 
 export class Youtrack implements YoutrackClient {
 
-    private loggedIn: boolean = false;
     private readonly baseUrl: string;
     private defaultRequestOptions: RequestOptions = {jar: true, json: true};
     private credentials: YoutrackLoginOptions | YoutrackTokenOptions | null = null;
@@ -112,10 +111,6 @@ export class Youtrack implements YoutrackClient {
                 login: credentials.login,
                 password: credentials.password
             }
-        }).then(response => {
-            this.loggedIn = true;
-        }).catch(error => {
-            throw new Error(error);
         }));
     }
 
@@ -125,6 +120,9 @@ export class Youtrack implements YoutrackClient {
             const {headers, ...defaultOptions} = this.defaultRequestOptions;
             return {...defaultOptions, ...params, headers: {...headers, ...customHeaders}};
         }
-        return {...this.defaultRequestOptions, ...params, customHeaders}
+        if ('headers' in this.defaultRequestOptions) {
+            return {...this.defaultRequestOptions, ...params}
+        }
+        return {...this.defaultRequestOptions, ...params, headers: {...customHeaders}}
     }
 }
