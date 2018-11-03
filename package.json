@@ -8,7 +8,8 @@
     "build": "tsc",
     "test": "mocha -r ts-node/register test/**/*.ts",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
