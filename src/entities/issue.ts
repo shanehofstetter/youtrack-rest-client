@@ -12,7 +12,14 @@ export interface Issue {
 
 export interface Field {
     name: string;
-    value: string;
+    value: string | any[];
+    valueId?: string | any[];
+    color?: Color | null;
+}
+
+export interface Color {
+    bg: string;
+    fg: string;
 }
 
 export interface Comment {
