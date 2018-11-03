@@ -1,6 +1,6 @@
 {
   "name": "youtrack-rest-client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Client library for accessing the youtrack REST api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
