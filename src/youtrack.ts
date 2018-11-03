@@ -18,11 +18,14 @@ export interface YoutrackClient {
 
     delete(url: string, params?: {}): RequestPromise;
 
+    put(url: string, params?: {}): RequestPromise;
+
     readonly users: UserEndpoint;
     readonly searches: SearchEndpoint;
     readonly tags: TagEndpoint;
     readonly issues: IssueEndpoint;
     readonly projects: ProjectEndpoint;
+
 }
 
 export class Youtrack implements YoutrackClient {
@@ -90,5 +93,9 @@ export class Youtrack implements YoutrackClient {
 
     public delete(url: string, params: {} = {}): RequestPromise {
         return request.delete(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
+    }
+
+    public put(url: string, params?: {}): RequestPromise {
+        return request.put(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
     }
 }

@@ -10,6 +10,13 @@ export interface Issue {
     tag: Tag[];
 }
 
+export interface NewIssue {
+    project: string;
+    summary: string;
+    description?: string;
+    permittedGroup?: string;
+}
+
 export interface Field {
     name: string;
     value: string | any[];
@@ -50,7 +57,7 @@ export class IssueEndpoint extends BaseEndpoint {
     }
 
     public search(filter: string, filterOptions: IssueFilterOptions = {}): Promise<Issue[]> {
-        return this.toPromise(this.client.get(urls.ISSUE_SEARCH, {
+        return this.toPromise(this.client.get(urls.ISSUES, {
             qs: {
                 filter,
                 ...filterOptions
@@ -62,5 +69,12 @@ export class IssueEndpoint extends BaseEndpoint {
 
     public delete(issueId: string): Promise<any> {
         return this.toPromise(this.client.delete(this.format(urls.ISSUE, {issue: issueId})));
+    }
+
+    public create(issue: NewIssue): Promise<string> {
+        return this.toPromise(this.client.put(urls.ISSUES, {qs: issue, resolveWithFullResponse: true})).then((response: any) => {
+            const location = response.headers.location;
+            return location.match(/\/issue\/([\S\-]+)$/)[0].replace("/issue/", "");
+        });
     }
 }

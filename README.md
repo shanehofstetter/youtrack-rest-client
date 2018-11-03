@@ -69,6 +69,15 @@ youtrack.login().then(() => {
     youtrack.issues.delete('T1-3').then(() => {
         console.log('deleted issue T1-3');
     });
+    
+    // create a new issue
+    youtrack.issues.create({
+        project: 'MP',
+        summary: "Crashes in IE 7",
+        description: "some users reported that the app crashes in their favorite browser."
+    }).then((issueId) => {
+        console.log({issueId});
+    });
 });
 
 ```
