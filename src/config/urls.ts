@@ -8,5 +8,6 @@ export namespace urls {
     export const ISSUES: string = '/issue';
     export const PROJECTS: string = '/project/all';
     export const PROJECT: string = '/admin/project/{projectId}';
-    export const WORK_ITEM: string = '/issue/{issueId}/timetracking/workitem';
+    export const WORK_ITEMS: string = '/issue/{issueId}/timetracking/workitem';
+    export const WORK_ITEM: string = '/issue/{issueId}/timetracking/workitem/{workItemId}';
 }

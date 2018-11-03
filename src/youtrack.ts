@@ -119,12 +119,12 @@ export class Youtrack implements YoutrackClient {
         }));
     }
 
-    private prepareParams(params: {}, headers: {}): {} {
-        if ('headers' in this.defaultRequestOptions && Object.keys(headers).length > 0) {
+    private prepareParams(params: {}, customHeaders: {}): {} {
+        if ('headers' in this.defaultRequestOptions && Object.keys(customHeaders).length > 0) {
             // merge the header parameters
-            const {defaultHeaders, ...defaultOptions} = this.defaultRequestOptions;
-            return {...defaultOptions, ...params, headers: {...defaultHeaders, ...headers}};
+            const {headers, ...defaultOptions} = this.defaultRequestOptions;
+            return {...defaultOptions, ...params, headers: {...headers, ...customHeaders}};
         }
-        return {...this.defaultRequestOptions, ...params, headers}
+        return {...this.defaultRequestOptions, ...params, customHeaders}
     }
 }

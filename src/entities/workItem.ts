@@ -35,13 +35,13 @@ export interface WorkItem {
 export class WorkItemEndpoint extends BaseEndpoint {
 
     public all(issueId: string): Promise<WorkItem[]> {
-        return this.toPromise<WorkItem[]>(this.client.get(this.format(urls.WORK_ITEM, {issueId}))).then(response => {
+        return this.toPromise<WorkItem[]>(this.client.get(this.format(urls.WORK_ITEMS, {issueId}))).then(response => {
             return response;
         });
     }
 
     public create(issueId: string, workItem: WorkItem): Promise<string> {
-        return this.toPromise(this.client.post(this.format(urls.WORK_ITEM, {issueId}), {
+        return this.toPromise(this.client.post(this.format(urls.WORK_ITEMS, {issueId}), {
             resolveWithFullResponse: true,
             body: this.workItemToXML(workItem),
             json: false
@@ -51,19 +51,31 @@ export class WorkItemEndpoint extends BaseEndpoint {
         });
     }
 
+    public edit(issueId: string, workItem: WorkItem): Promise<string> {
+        return this.toPromise(this.client.put(this.format(urls.WORK_ITEM, {issueId, workItemId: workItem.id}), {
+            body: xml({
+                workItem: [
+                    {duration: workItem.duration},
+                    {date: workItem.date},
+                    {description: workItem.description},
+                ]
+            }),
+            json: false
+        }, headers.CONTENT_TYPE_XML));
+    }
+
     private workItemToXML(workItem: WorkItem): string {
-        const workItemPayload = (({duration, date, description, workType}) => ({
+        return xml({
             workItem: [
-                {duration},
-                {date},
-                {description},
+                {duration: workItem.duration},
+                {date: workItem.date},
+                {description: workItem.description},
                 {
                     worktype: [
-                        {name: workType.name}
+                        {name: workItem.workType.name}
                     ]
                 }
             ]
-        }))(workItem);
-        return xml(workItemPayload);
+        });
     }
 }

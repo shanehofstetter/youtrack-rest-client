@@ -149,4 +149,13 @@ const workItem = {
 youtrack.workItems.create("T1-2", workItem).then((workItemId) => {
     console.log({workItemId});
 });
+
+// edit a work item
+workItem.duration = 45;
+workItem.id = '108-1'; // id is required
+
+youtrack.workItems.edit("T1-2", workItem).then(() => {
+    console.log('work item updated');
+});
+
 ```
