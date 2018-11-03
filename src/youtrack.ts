@@ -5,6 +5,8 @@ import {RequestPromise} from "request-promise";
 import {UserEndpoint} from "./entities/user";
 import {SearchEndpoint} from "./entities/search";
 import {TagEndpoint} from "./entities/tag";
+import {IssueEndpoint} from "./entities/issue";
+import {ProjectEndpoint} from "./entities/project";
 
 export interface YoutrackClient {
 
@@ -17,6 +19,8 @@ export interface YoutrackClient {
     readonly users: UserEndpoint;
     readonly searches: SearchEndpoint;
     readonly tags: TagEndpoint;
+    readonly issues: IssueEndpoint;
+    readonly projects: ProjectEndpoint;
 }
 
 export class Youtrack implements YoutrackClient {
@@ -28,6 +32,8 @@ export class Youtrack implements YoutrackClient {
     public readonly users: UserEndpoint;
     public readonly searches: SearchEndpoint;
     public readonly tags: TagEndpoint;
+    public readonly issues: IssueEndpoint;
+    public readonly projects: ProjectEndpoint;
 
     public constructor(options: YoutrackLoginOptions | YoutrackTokenOptions) {
         if (!instanceOfYoutrackLoginOptions(options)) {
@@ -38,6 +44,8 @@ export class Youtrack implements YoutrackClient {
         this.users = new UserEndpoint(this);
         this.searches = new SearchEndpoint(this);
         this.tags = new TagEndpoint(this);
+        this.issues = new IssueEndpoint(this);
+        this.projects = new ProjectEndpoint(this);
     }
 
     private formBaseUrl(baseUrl: string): string {

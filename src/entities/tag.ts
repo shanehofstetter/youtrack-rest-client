@@ -1,5 +1,5 @@
-import {YoutrackClient} from "../youtrack";
 import {urls} from "../config/urls";
+import {BaseEndpoint} from "./base";
 
 export interface Tag {
     name: string;
@@ -8,16 +8,11 @@ export interface Tag {
     untagOnResolve: boolean;
 }
 
-export class TagEndpoint {
-    public constructor(private client: YoutrackClient) {
-    }
+export class TagEndpoint extends BaseEndpoint {
 
     public all(): Promise<Tag[]> {
-        return Promise.resolve(this.client.get(urls.TAGS).then(response => {
+        return this.toPromise<Tag[]>(this.client.get(urls.TAGS)).then(response => {
             return response;
-        }).catch(error => {
-            console.error(error.message);
-            throw new Error(error);
-        }));
+        });
     }
 }

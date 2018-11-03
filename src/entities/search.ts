@@ -1,5 +1,5 @@
-import {YoutrackClient} from "../youtrack";
 import {urls} from "../config/urls";
+import {BaseEndpoint} from "./base";
 
 export interface Search {
     value: string;
@@ -8,16 +8,11 @@ export interface Search {
     updatableByGroup: boolean;
 }
 
-export class SearchEndpoint {
-    public constructor(private client: YoutrackClient) {
-    }
+export class SearchEndpoint extends BaseEndpoint {
 
     public saved(): Promise<Search[]> {
-        return Promise.resolve(this.client.get(urls.SAVED_SEARCHES).then(response => {
+        return this.toPromise<Search[]>(this.client.get(urls.SAVED_SEARCHES)).then(response => {
             return response;
-        }).catch(error => {
-            console.error(error.message);
-            throw new Error(error);
-        }));
+        });
     }
 }

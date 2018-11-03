@@ -1,6 +1,5 @@
-import {YoutrackClient} from "../youtrack";
 import {urls} from "../config/urls";
-import * as format from "string-template";
+import {BaseEndpoint} from "./base";
 
 export interface User {
     filterFolder: string;
@@ -13,29 +12,20 @@ export interface User {
     guest: boolean;
 }
 
-export class UserEndpoint {
+export class UserEndpoint extends BaseEndpoint {
 
     private currentUser: User | null = null;
 
-    public constructor(private client: YoutrackClient) {
-    }
-
     public current(): Promise<User> {
-        return Promise.resolve(this.client.get(urls.USER_CURRENT).then(response => {
+        return this.toPromise<User>(this.client.get(urls.USER_CURRENT)).then(response => {
             this.currentUser = response;
             return response;
-        }).catch(error => {
-            console.error(error.message);
-            throw new Error(error);
-        }));
+        });
     }
 
     public byName(name: string): Promise<User> {
-        return Promise.resolve(this.client.get(format(urls.USER_BY_NAME, {name})).then(response => {
+        return this.toPromise<User>(this.client.get(this.format(urls.USER_BY_NAME, {name}))).then(response => {
             return response;
-        }).catch(error => {
-            console.error(error.message);
-            throw new Error(error);
-        }));
+        });
     }
 }
