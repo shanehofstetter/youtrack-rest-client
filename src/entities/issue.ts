@@ -63,7 +63,7 @@ export class IssueEndpoint extends BaseEndpoint {
                 ...filterOptions
             }
         })).then((issues: any) => {
-            return <Issue[]>issues['issue'];
+            return <Issue[]>issues.issue;
         });
     }
 

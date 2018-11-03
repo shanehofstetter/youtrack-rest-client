@@ -32,7 +32,8 @@
   "dependencies": {
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
-    "string-template": "^1.0.0"
+    "string-template": "^1.0.0",
+    "xml": "^1.0.1"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",
@@ -41,6 +42,7 @@
     "@types/request-promise": "^4.1.42",
     "@types/sinon": "^5.0.5",
     "@types/string-template": "^1.0.2",
+    "@types/xml": "^1.0.2",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "sinon": "^7.1.1",

@@ -12,38 +12,44 @@ import {SearchEndpoint} from "./entities/search";
 import {TagEndpoint} from "./entities/tag";
 import {IssueEndpoint} from "./entities/issue";
 import {ProjectEndpoint} from "./entities/project";
+import {WorkItemEndpoint} from "./entities/workItem";
 
 export interface YoutrackClient {
 
     login(): Promise<any>;
 
-    get(url: string, params?: {}): RequestPromise;
+    get(url: string, params?: {}, headers?: {}): RequestPromise;
 
-    post(url: string, params?: {}): RequestPromise;
+    post(url: string, params?: {}, headers?: {}): RequestPromise;
 
-    delete(url: string, params?: {}): RequestPromise;
+    delete(url: string, params?: {}, headers?: {}): RequestPromise;
 
-    put(url: string, params?: {}): RequestPromise;
+    put(url: string, params?: {}, headers?: {}): RequestPromise;
 
     readonly users: UserEndpoint;
     readonly searches: SearchEndpoint;
     readonly tags: TagEndpoint;
     readonly issues: IssueEndpoint;
     readonly projects: ProjectEndpoint;
+    readonly workItems: WorkItemEndpoint;
+}
 
+interface RequestOptions {
+    [key: string]: any;
 }
 
 export class Youtrack implements YoutrackClient {
 
     private loggedIn: boolean = false;
     private readonly baseUrl: string;
-    private defaultRequestOptions: object = {jar: true, json: true};
+    private defaultRequestOptions: RequestOptions = {jar: true, json: true};
     private credentials: YoutrackLoginOptions | YoutrackTokenOptions | null = null;
     public readonly users: UserEndpoint;
     public readonly searches: SearchEndpoint;
     public readonly tags: TagEndpoint;
     public readonly issues: IssueEndpoint;
     public readonly projects: ProjectEndpoint;
+    public readonly workItems: WorkItemEndpoint;
 
     public constructor(options: YoutrackLoginOptions | YoutrackTokenOptions) {
         if (instanceOfYoutrackTokenOptions(options)) {
@@ -62,6 +68,32 @@ export class Youtrack implements YoutrackClient {
         this.tags = new TagEndpoint(this);
         this.issues = new IssueEndpoint(this);
         this.projects = new ProjectEndpoint(this);
+        this.workItems = new WorkItemEndpoint(this);
+    }
+
+    public login(): Promise<YoutrackClient> {
+        if (instanceOfYoutrackLoginOptions(this.credentials)) {
+            return this.performLogin(this.credentials).then(() => {
+                return this;
+            });
+        }
+        return Promise.resolve(this);
+    }
+
+    public post(url: string, params = {}, headers: {} = {}): RequestPromise {
+        return request.post(this.baseUrl + url, this.prepareParams(params, headers));
+    }
+
+    public get(url: string, params = {}, headers = {}): RequestPromise {
+        return request.get(this.baseUrl + url, this.prepareParams(params, headers));
+    }
+
+    public delete(url: string, params = {}, headers = {}): RequestPromise {
+        return request.delete(this.baseUrl + url, this.prepareParams(params, headers));
+    }
+
+    public put(url: string, params = {}, headers = {}): RequestPromise {
+        return request.put(this.baseUrl + url, this.prepareParams(params, headers));
     }
 
     private formBaseUrl(baseUrl: string): string {
@@ -72,15 +104,6 @@ export class Youtrack implements YoutrackClient {
             baseUrl += "/rest";
         }
         return baseUrl;
-    }
-
-    public login(): Promise<YoutrackClient> {
-        if (instanceOfYoutrackLoginOptions(this.credentials)) {
-            return this.performLogin(this.credentials).then(() => {
-                return this;
-            });
-        }
-        return Promise.resolve(this);
     }
 
     private performLogin(credentials: YoutrackLoginOptions) {
@@ -96,19 +119,12 @@ export class Youtrack implements YoutrackClient {
         }));
     }
 
-    public post(url: string, params: {} = {}): RequestPromise {
-        return request.post(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
-    }
-
-    public get(url: string, params: {} = {}): RequestPromise {
-        return request.get(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
-    }
-
-    public delete(url: string, params: {} = {}): RequestPromise {
-        return request.delete(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
-    }
-
-    public put(url: string, params?: {}): RequestPromise {
-        return request.put(this.baseUrl + url, {...params, ...this.defaultRequestOptions});
+    private prepareParams(params: {}, headers: {}): {} {
+        if ('headers' in this.defaultRequestOptions && Object.keys(headers).length > 0) {
+            // merge the header parameters
+            const {defaultHeaders, ...defaultOptions} = this.defaultRequestOptions;
+            return {...defaultOptions, ...params, headers: {...defaultHeaders, ...headers}};
+        }
+        return {...this.defaultRequestOptions, ...params, headers}
     }
 }
