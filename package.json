@@ -1,0 +1,50 @@
+{
+  "name": "youtrack-rest-client",
+  "version": "0.1.0",
+  "description": "Client library for accessing the youtrack REST api",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha -r ts-node/register test/**/*.ts",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanehofstetter/youtrack-rest-client.git"
+  },
+  "keywords": [
+    "Youtrack",
+    "REST",
+    "API",
+    "Client"
+  ],
+  "author": "Shane Hofstetter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanehofstetter/youtrack-rest-client/issues"
+  },
+  "homepage": "https://github.com/shanehofstetter/youtrack-rest-client#readme",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "string-template": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.2",
+    "@types/request": "^2.48.0",
+    "@types/request-promise": "^4.1.42",
+    "@types/sinon": "^5.0.5",
+    "@types/string-template": "^1.0.2",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.1.1",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6"
+  },
+  "files": [
+    "dist"
+  ]
+}
