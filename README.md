@@ -1,6 +1,8 @@
 # youtrack-rest-client
 Client library for accessing the youtrack rest api
 
+[![Build Status](https://travis-ci.com/shanehofstetter/youtrack-rest-client.svg?branch=master)](https://travis-ci.com/shanehofstetter/youtrack-rest-client)
+
 
 ## Install
 ```
