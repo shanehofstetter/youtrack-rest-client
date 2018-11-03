@@ -15,10 +15,12 @@
     "url": "git+https://github.com/shanehofstetter/youtrack-rest-client.git"
   },
   "keywords": [
-    "Youtrack",
-    "REST",
-    "API",
-    "Client"
+    "youtrack",
+    "rest api",
+    "jetbrains",
+    "sdk",
+    "client",
+    "issue tracking"
   ],
   "author": "Shane Hofstetter",
   "license": "ISC",
