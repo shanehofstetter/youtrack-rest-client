@@ -63,11 +63,13 @@ export class Youtrack implements YoutrackClient {
         return baseUrl;
     }
 
-    public login(): Promise<any> {
+    public login(): Promise<YoutrackClient> {
         if (instanceOfYoutrackLoginOptions(this.credentials)) {
-            return this.performLogin(this.credentials);
+            return this.performLogin(this.credentials).then(() => {
+                return this;
+            });
         }
-        return Promise.resolve(null);
+        return Promise.resolve(this);
     }
 
     private performLogin(credentials: YoutrackLoginOptions) {
