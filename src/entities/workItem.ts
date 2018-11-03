@@ -64,6 +64,10 @@ export class WorkItemEndpoint extends BaseEndpoint {
         }, headers.CONTENT_TYPE_XML));
     }
 
+    public delete(issueId: string, workItemId: string): Promise<any> {
+        return this.toPromise(this.client.delete(this.format(urls.WORK_ITEM, {issueId, workItemId})));
+    }
+
     private workItemToXML(workItem: WorkItem): string {
         return xml({
             workItem: [

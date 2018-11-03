@@ -158,4 +158,9 @@ youtrack.workItems.edit("T1-2", workItem).then(() => {
     console.log('work item updated');
 });
 
+// delete a work item
+youtrack.workItems.delete("T1-2", "108-1").then(() => {
+    console.log('work item deleted');
+});
+
 ```
