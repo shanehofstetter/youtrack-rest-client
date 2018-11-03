@@ -35,13 +35,12 @@ youtrack.login().then(() => {
 
     // get all tags
     youtrack.tags.all().then((tags) => {
-        console.log({tags});
+        console.dir(tags);
     });
     
     // get all projects
     youtrack.projects.all().then((projects) => {
         console.dir(projects);
-        console.dir(projects[0]);
     });
 
     // get an issue by its id
@@ -56,6 +55,11 @@ youtrack.login().then(() => {
 
     // search issues with a filter query and additional filter options (available are: max, with, after)
     youtrack.issues.search('#Bug', {max: 1}).then((issues) => {
+        console.dir(issues);
+    });
+    
+    // filter issues by project
+    youtrack.issues.search('project: MP').then((issues) => {
         console.dir(issues);
     });
 
