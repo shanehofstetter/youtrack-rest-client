@@ -52,7 +52,7 @@ export interface IssueFilterOptions {
 }
 
 export class IssueEndpoint extends BaseEndpoint {
-    public byId(issueId: string): Promise<Issue[]> {
+    public byId(issueId: string): Promise<Issue> {
         return this.toPromise(this.client.get(this.format(urls.ISSUE, {issue: issueId})));
     }
 
