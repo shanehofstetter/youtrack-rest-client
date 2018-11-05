@@ -29,7 +29,7 @@ export interface WorkItem {
     created?: number;
     description: string;
     author?: Author;
-    workType: WorkType;
+    worktype: WorkType;
 }
 
 export class WorkItemEndpoint extends BaseEndpoint {
@@ -76,7 +76,7 @@ export class WorkItemEndpoint extends BaseEndpoint {
                 {description: workItem.description},
                 {
                     worktype: [
-                        {name: workItem.workType.name}
+                        {name: workItem.worktype.name}
                     ]
                 }
             ]

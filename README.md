@@ -147,7 +147,7 @@ const workItem = {
     duration: 30,
     date: new Date().getTime(),
     description: "solved a nasty bug",
-    workType: {
+    worktype: {
         name: 'Development'
     }
 };
