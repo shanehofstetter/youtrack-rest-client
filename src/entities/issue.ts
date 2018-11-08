@@ -67,6 +67,14 @@ export interface IssueChange {
     comment: Comment[];
 }
 
+export interface IssueCommand {
+    command?: string;
+    comment?: string;
+    group?: string;
+    disableNotifications?: boolean;
+    runAs?: string;
+}
+
 export class IssueEndpoint extends BaseEndpoint {
     public byId(issueId: string): Promise<Issue> {
         return this.toPromise(this.client.get(this.format(urls.ISSUE, {issue: issueId})));
@@ -109,5 +117,11 @@ export class IssueEndpoint extends BaseEndpoint {
         return Promise.resolve(this.client.get(this.format(urls.ISSUE_EXISTS, {issue: issueId})).then(() => {
             return Promise.resolve(true);
         }).catch(() => Promise.resolve(false)));
+    }
+
+    public execute(issueId: string, issueCommand: IssueCommand): Promise<any> {
+        return this.toPromise(this.client.post(this.format(urls.ISSUE_EXECUTE, {issue: issueId}), {
+            form: issueCommand
+        }));
     }
 }

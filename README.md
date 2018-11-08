@@ -146,6 +146,16 @@ youtrack.issues.changes('T1-2').then((issueChanges) => {
 youtrack.issues.exists('T1-1').then((exists) => {
     console.log({exists});
 });
+
+// execute commands on an issue, e.g. add a comment
+youtrack.issues.execute('T1-1', { comment: "my comment" }).then((response) => {
+    console.log({response});
+});
+
+// execute command on an issue to add a tag
+youtrack.issues.execute('T1-1', { command: "add tag mytag" }).then((response) => {
+    console.log({response});
+});
 ```
 
 ### WorkItems (Time-Tracking)
