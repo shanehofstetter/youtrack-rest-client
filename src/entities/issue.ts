@@ -1,6 +1,7 @@
 import {urls} from "../config/urls";
 import {BaseEndpoint} from "./base";
 import {Tag} from "./tag";
+import {Comment} from "./comment";
 
 export interface Issue {
     id: string;
@@ -27,22 +28,6 @@ export interface Field {
 export interface Color {
     bg: string;
     fg: string;
-}
-
-export interface Comment {
-    id: string;
-    author: string;
-    authorFullName: string;
-    issueId: string;
-    parentId: any;
-    deleted: boolean;
-    jiraId: any;
-    text: string;
-    shownForIssueAuthor: boolean,
-    created: number;
-    updated: any
-    permittedGroup: any;
-    replies: any[];
 }
 
 export interface IssueFilterOptions {

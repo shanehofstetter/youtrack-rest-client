@@ -13,6 +13,7 @@ import {TagEndpoint} from "./entities/tag";
 import {IssueEndpoint} from "./entities/issue";
 import {ProjectEndpoint} from "./entities/project";
 import {WorkItemEndpoint} from "./entities/workItem";
+import {CommentEndpoint} from "./entities/comment";
 
 export interface YoutrackClient {
 
@@ -32,6 +33,7 @@ export interface YoutrackClient {
     readonly issues: IssueEndpoint;
     readonly projects: ProjectEndpoint;
     readonly workItems: WorkItemEndpoint;
+    readonly comments: CommentEndpoint;
 }
 
 interface RequestOptions {
@@ -49,6 +51,7 @@ export class Youtrack implements YoutrackClient {
     public readonly issues: IssueEndpoint;
     public readonly projects: ProjectEndpoint;
     public readonly workItems: WorkItemEndpoint;
+    public readonly comments: CommentEndpoint;
 
     public constructor(options: YoutrackLoginOptions | YoutrackTokenOptions) {
         if (instanceOfYoutrackTokenOptions(options)) {
@@ -68,6 +71,7 @@ export class Youtrack implements YoutrackClient {
         this.issues = new IssueEndpoint(this);
         this.projects = new ProjectEndpoint(this);
         this.workItems = new WorkItemEndpoint(this);
+        this.comments = new CommentEndpoint(this);
     }
 
     public login(): Promise<YoutrackClient> {

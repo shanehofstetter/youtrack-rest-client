@@ -193,3 +193,28 @@ youtrack.workItems.delete("T1-2", "108-1").then(() => {
 });
 
 ```
+
+### Issue Comments
+
+```typescript
+
+// list comments of an issue
+youtrack.comments.all('T1-1').then((comments) => {
+    console.log({comments});
+});
+
+// create a new comment
+youtrack.comments.create('T1-1', 'another comment incoming').then((response) => {
+    console.log({response});
+});
+
+// update a comment
+youtrack.comments.update('T1-1', '4-1', 'this comment is better').then((response) => {
+    console.log({response});
+});
+
+// delete a comment
+youtrack.comments.delete('T1-1', '4-2').then((response) => {
+    console.log({response});
+});
+```
