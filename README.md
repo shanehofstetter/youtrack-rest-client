@@ -142,6 +142,10 @@ youtrack.issues.changes('T1-2').then((issueChanges) => {
     console.dir(issueChanges);
 });
 
+// check if an issue exists
+youtrack.issues.exists('T1-1').then((exists) => {
+    console.log({exists});
+});
 ```
 
 ### WorkItems (Time-Tracking)

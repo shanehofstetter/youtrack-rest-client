@@ -104,4 +104,10 @@ export class IssueEndpoint extends BaseEndpoint {
     public changes(issueId: string): Promise<IssueChanges> {
         return this.toPromise<IssueChanges>(this.client.get(this.format(urls.ISSUE_CHANGES, {issue: issueId})));
     }
+
+    public exists(issueId: string): Promise<boolean> {
+        return Promise.resolve(this.client.get(this.format(urls.ISSUE_EXISTS, {issue: issueId})).then(() => {
+            return Promise.resolve(true);
+        }).catch(() => Promise.resolve(false)));
+    }
 }
