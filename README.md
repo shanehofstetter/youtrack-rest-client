@@ -132,6 +132,16 @@ youtrack.issues.create({
     console.log({issueId});
 });
 
+// get the history of an issue
+youtrack.issues.history('T1-2').then((issueHistory) => {
+    console.dir(issueHistory);
+});
+
+// get the historical changes of an issue
+youtrack.issues.changes('T1-2').then((issueChanges) => {
+    console.dir(issueChanges);
+});
+
 ```
 
 ### WorkItems (Time-Tracking)

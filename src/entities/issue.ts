@@ -51,6 +51,22 @@ export interface IssueFilterOptions {
     after?: number;
 }
 
+export interface IssueChanges {
+    issue: Issue;
+    change: IssueChange[];
+}
+
+export interface FieldChange {
+    name: string;
+    value: any;
+    oldValue: any;
+}
+
+export interface IssueChange {
+    field: FieldChange[];
+    comment: Comment[];
+}
+
 export class IssueEndpoint extends BaseEndpoint {
     public byId(issueId: string): Promise<Issue> {
         return this.toPromise(this.client.get(this.format(urls.ISSUE, {issue: issueId})));
@@ -72,9 +88,20 @@ export class IssueEndpoint extends BaseEndpoint {
     }
 
     public create(issue: NewIssue): Promise<string> {
-        return this.toPromise(this.client.put(urls.ISSUES, {qs: issue, resolveWithFullResponse: true})).then((response: any) => {
+        return this.toPromise(this.client.put(urls.ISSUES, {
+            qs: issue,
+            resolveWithFullResponse: true
+        })).then((response: any) => {
             const location = response.headers.location;
             return location.match(/\/issue\/([\S\-]+)$/)[0].replace("/issue/", "");
         });
+    }
+
+    public history(issueId: string): Promise<Issue[]> {
+        return this.toPromise<Issue[]>(this.client.get(this.format(urls.ISSUE_HISTORY, {issue: issueId})));
+    }
+
+    public changes(issueId: string): Promise<IssueChanges> {
+        return this.toPromise<IssueChanges>(this.client.get(this.format(urls.ISSUE_CHANGES, {issue: issueId})));
     }
 }
