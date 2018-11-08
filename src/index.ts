@@ -5,3 +5,5 @@ export * from "./entities/search";
 export * from "./entities/tag";
 export * from "./entities/user";
 export * from "./entities/workItem";
+export * from "./entities/admin";
+export * from "./entities/admin/timetracking";
