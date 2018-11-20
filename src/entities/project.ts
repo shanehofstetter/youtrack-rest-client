@@ -1,6 +1,3 @@
-import {urls} from "../config/urls";
-import {BaseEndpoint} from "./base";
-
 export interface Value {
     value: string;
 }
@@ -27,19 +24,3 @@ export interface Project extends ProjectImpl {
 }
 
 export const projectFields: string[] = Object.getOwnPropertyNames(new ProjectImpl());
-
-export class ProjectEndpoint extends BaseEndpoint {
-
-    public all(): Promise<Project[]> {
-        return this.toPromise<Project[]>(this.client.get(urls.PROJECTS, {qs: {fields: projectFields.join(',')}})).then(response => {
-            return response;
-        });
-    }
-
-    public byId(projectId: string): Promise<Project> {
-        return this.toPromise<Project>(this.client.get(this.format(urls.PROJECT, {projectId}),
-            {qs: {fields: projectFields.join(',')}})).then(response => {
-            return response;
-        });
-    }
-}

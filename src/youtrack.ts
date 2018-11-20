@@ -3,13 +3,13 @@ import {
 } from "./options/youtrack_options";
 import * as request from "request-promise";
 import {RequestPromise} from "request-promise";
-import {UserEndpoint} from "./entities/user";
-import {SearchEndpoint} from "./entities/search";
-import {TagEndpoint} from "./entities/tag";
-import {IssueEndpoint} from "./entities/issue";
-import {ProjectEndpoint} from "./entities/project";
-import {WorkItemEndpoint} from "./entities/workItem";
-import {CommentEndpoint} from "./entities/comment";
+import {UserEndpoint} from "./endpoints/user";
+import {TagEndpoint} from "./endpoints/tag";
+import {SearchEndpoint} from "./endpoints/search";
+import {IssueEndpoint} from "./endpoints/issue";
+import {ProjectEndpoint} from "./endpoints/project";
+import {WorkItemEndpoint} from "./endpoints/workitem";
+import {CommentEndpoint} from "./endpoints/comment";
 
 export interface YoutrackClient {
 
