@@ -15,3 +15,7 @@ export const generateFields = (obj: { [key: string]: any }): string[] => {
         return f;
     });
 };
+
+export const generateFieldsQuery = (obj: { [key: string]: any }): string => {
+    return generateFields(obj).join(',');
+};

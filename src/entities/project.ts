@@ -1,21 +1,27 @@
 import {MinimalUser, MinimalUserImpl} from "./user";
+import {ProjectCustomField, ProjectCustomFieldImpl} from "./projectCustomField";
 
-export class ProjectImpl {
-    createdBy: MinimalUser = new MinimalUserImpl();
-    fields: any[] = [];
-    fromEmail: string = '';
-    hubResourceId: string = '';
-    iconUrl: string = '';
-    issues: any[] = [];
-    id?: string = '';
+export class MinimalProjectImpl {
+    id: string = '';
     name: string = '';
     shortName?: string = '';
     description: string = '';
     archived?: boolean = false;
-    usages?: any[] = [];
+}
+
+export class ProjectImpl extends MinimalProjectImpl {
+    createdBy: MinimalUser = new MinimalUserImpl();
+    fields: ProjectCustomField[] = [new ProjectCustomFieldImpl()];
+    fromEmail: string = '';
+    hubResourceId: string = '';
+    iconUrl: string = '';
     timeTrackingEnabled?: boolean = false;
-    leader?: any = null;
+    leader?: MinimalUser = new MinimalUserImpl();
 }
 
 export interface Project extends ProjectImpl {
+}
+
+export interface ReducedProject extends MinimalProjectImpl {
+
 }

@@ -1,8 +1,11 @@
 export * from "./youtrack";
 
 export * from "./entities/comment";
+export * from "./entities/customField";
+export * from "./entities/customFieldDefaults";
 export * from "./entities/issue";
 export * from "./entities/project";
+export * from "./entities/projectCustomField";
 export * from "./entities/search";
 export * from "./entities/tag";
 export * from "./entities/user";
@@ -14,4 +17,4 @@ export * from "./endpoints/project";
 export * from "./endpoints/search";
 export * from "./endpoints/tag";
 export * from "./endpoints/user";
-export * from "./endpoints/workItem";
+export * from "./endpoints/workitem";
