@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import {Youtrack} from "../src";
+import {projectFields, Youtrack} from "../src";
 import sinon = require('sinon');
 import * as request from "request-promise";
 
@@ -45,14 +45,14 @@ describe("Youtrack", () => {
                 assert(expectation.calledOnce);
 
                 const args = expectation.args[0];
-                assert(args[0] === '/rest/project/all');
+                assert(args[0] === '/api/admin/projects');
                 assert.deepStrictEqual(args[1], {
                     jar: true,
                     json: true,
                     headers: {
                         Authorization: 'Bearer testtoken'
                     },
-                    qs: {verbose: 'true'}
+                    qs: {fields: projectFields.join(',')}
                 });
             });
 
@@ -65,7 +65,7 @@ describe("Youtrack", () => {
                     assert(expectation.calledOnce);
 
                     const args = expectation.args[0];
-                    assert(args[0] === '/rest/some/resource');
+                    assert(args[0] === '/api/some/resource');
                     assert.deepStrictEqual(args[1], {
                         jar: true,
                         json: true,
