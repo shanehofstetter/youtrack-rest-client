@@ -5,34 +5,40 @@ export interface Value {
     value: string;
 }
 
-export interface Project {
-    id?: string;
-    name: string;
-    shortName?: string;
-    description: string;
-    isImporting?: boolean;
-    archived?: boolean;
-    lead?: string;
-    startingNumber?: any;
-    subsystems?: any[];
-    assigneesLogin?: Value[];
-    assigneesFullName?: Value[];
-    assigneesUrl?: string;
-    subsystemsUrl?: string;
-    buildsUrl?: string;
-    versionsUrl?: string;
+class ProjectImpl {
+    createdBy: any = null;
+    fields: any[] = [];
+    fromEmail: string = '';
+    hubResourceId: string = '';
+    iconUrl: string = '';
+    issues: any[] = [];
+    id?: string = '';
+    name: string = '';
+    shortName?: string = '';
+    description: string = '';
+    archived?: boolean = false;
+    usages?: any[] = [];
+    timeTrackingEnabled?: boolean = false;
+    query?: string = '';
+    leader?: any = null;
 }
+
+export interface Project extends ProjectImpl {
+}
+
+export const projectFields: string[] = Object.getOwnPropertyNames(new ProjectImpl());
 
 export class ProjectEndpoint extends BaseEndpoint {
 
     public all(): Promise<Project[]> {
-        return this.toPromise<Project[]>(this.client.get(urls.PROJECTS, {qs: {verbose: 'true'}})).then(response => {
+        return this.toPromise<Project[]>(this.client.get(urls.PROJECTS, {qs: {fields: projectFields.join(',')}})).then(response => {
             return response;
         });
     }
 
     public byId(projectId: string): Promise<Project> {
-        return this.toPromise<Project>(this.client.get(this.format(urls.PROJECT, {projectId}))).then(response => {
+        return this.toPromise<Project>(this.client.get(this.format(urls.PROJECT, {projectId}),
+            {qs: {fields: projectFields.join(',')}})).then(response => {
             return response;
         });
     }

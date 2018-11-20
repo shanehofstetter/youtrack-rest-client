@@ -12,8 +12,8 @@ export namespace urls {
     export const ISSUE_COMMENTS: string = '/issue/{issue}/comment';
     export const ISSUE_COMMENT: string = '/issue/{issue}/comment/{comment}';
     export const ISSUES: string = '/issue';
-    export const PROJECTS: string = '/project/all';
-    export const PROJECT: string = '/admin/project/{projectId}';
+    export const PROJECTS: string = '/admin/projects';
+    export const PROJECT: string = '/admin/projects/{projectId}';
     export const WORK_ITEMS: string = '/issue/{issueId}/timetracking/workitem';
     export const WORK_ITEM: string = '/issue/{issueId}/timetracking/workitem/{workItemId}';
 }
