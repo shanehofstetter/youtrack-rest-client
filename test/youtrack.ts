@@ -1,7 +1,8 @@
 import * as assert from 'assert';
-import {projectFields, Youtrack} from "../src";
+import {Youtrack} from "../src";
 import sinon = require('sinon');
 import * as request from "request-promise";
+import {projectFields} from "../src/entities/fields/fields";
 
 describe("Youtrack", () => {
 
