@@ -1,9 +1,7 @@
-export interface Value {
-    value: string;
-}
+import {MinimalUser, MinimalUserImpl} from "./user";
 
-class ProjectImpl {
-    createdBy: any = null;
+export class ProjectImpl {
+    createdBy: MinimalUser = new MinimalUserImpl();
     fields: any[] = [];
     fromEmail: string = '';
     hubResourceId: string = '';
@@ -16,11 +14,8 @@ class ProjectImpl {
     archived?: boolean = false;
     usages?: any[] = [];
     timeTrackingEnabled?: boolean = false;
-    query?: string = '';
     leader?: any = null;
 }
 
 export interface Project extends ProjectImpl {
 }
-
-export const projectFields: string[] = Object.getOwnPropertyNames(new ProjectImpl());

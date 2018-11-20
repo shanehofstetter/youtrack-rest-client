@@ -1,6 +1,7 @@
 import {BaseEndpoint} from "./base";
 import {urls} from "../config/urls";
-import {Project, projectFields} from "..";
+import {Project} from "..";
+import {projectFields} from "../entities/fields/fields";
 
 export class ProjectEndpoint extends BaseEndpoint {
 
