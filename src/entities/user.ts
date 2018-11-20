@@ -1,4 +1,4 @@
-export class MinimalUserImpl {
+export class ReducedUserImpl {
     email: string = '';
     fullName: string = '';
     login: string = '';
@@ -6,7 +6,7 @@ export class MinimalUserImpl {
     id: string = '';
 }
 
-export class UserImpl extends MinimalUserImpl {
+export class UserImpl extends ReducedUserImpl {
     avatarUrl: string = '';
     banned: boolean = false;
     online: boolean = false;
@@ -14,11 +14,10 @@ export class UserImpl extends MinimalUserImpl {
     jabberAccountName: string = '';
     ringId: string = '';
     tags: string = '';
-    profiles: any[] = [];
 }
 
 export interface User extends UserImpl {
 }
 
-export interface MinimalUser extends MinimalUserImpl {
+export interface ReducedUser extends ReducedUserImpl {
 }

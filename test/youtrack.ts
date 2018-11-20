@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import {MinimalProjectImpl, Youtrack} from "../src";
+import {ReducedProjectImpl, Youtrack} from "../src";
 import sinon = require('sinon');
 import * as request from "request-promise";
 import {generateFieldsQuery} from "../src/entities/fields/utils";
@@ -53,7 +53,7 @@ describe("Youtrack", () => {
                     headers: {
                         Authorization: 'Bearer testtoken'
                     },
-                    qs: {fields: generateFieldsQuery(new MinimalProjectImpl())}
+                    qs: {fields: generateFieldsQuery(new ReducedProjectImpl())}
                 });
             });
 

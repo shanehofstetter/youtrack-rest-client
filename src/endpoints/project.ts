@@ -1,11 +1,11 @@
 import {BaseEndpoint} from "./base";
 import {urls} from "../config/urls";
-import {MinimalProjectImpl, Project, ProjectImpl, ReducedProject} from "..";
+import {ReducedProjectImpl, Project, ProjectImpl, ReducedProject} from "..";
 import {generateFieldsQuery} from "../entities/fields/utils";
 
 export class ProjectEndpoint extends BaseEndpoint {
 
-    private readonly minimalFields: string = generateFieldsQuery(new MinimalProjectImpl());
+    private readonly minimalFields: string = generateFieldsQuery(new ReducedProjectImpl());
     private readonly fields: string = generateFieldsQuery(new ProjectImpl());
 
     public all(): Promise<ReducedProject[]> {
