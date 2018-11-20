@@ -19,34 +19,12 @@ yarn add youtrack-rest-client
 
 ### Authentication
 
-**You can either use your username and password:**
-```typescript
-import {Youtrack} from "youtrack-rest-client";
-
-const config = {baseUrl: "http://example.myjetbrains.com", login: "login", password: "password"};
-const youtrack = new Youtrack(config);
-
-youtrack.login().then(() => {
-   // do some requests.. 
-   youtrack.users.current().then((currentUser) => {
-       console.log({currentUser});
-   });
-});
-```
-
-**or use your existing token:**
+**With your permanent token (see [Manage-Permanent-Token](https://www.jetbrains.com/help/youtrack/incloud/Manage-Permanent-Token.html)):**
 ```typescript
 import {Youtrack} from "youtrack-rest-client";
 
 const config = {baseUrl: "http://example.myjetbrains.com", token: "perm:your-token"};
 const youtrack = new Youtrack(config);
-
-youtrack.login().then(() => {
-   // do some requests.. 
-   youtrack.users.current().then((currentUser) => {
-      console.log({currentUser});
-   });
-});
 ```
 
 ### User
@@ -58,9 +36,9 @@ youtrack.users.current().then((currentUser) => {
     console.log({currentUser});
 });
 
-// get a user by his/her login name
-youtrack.users.byName('test').then((user) => {
-    console.log({user});
+// get the list of users
+youtrack.users.all().then((users) => {
+    console.log({users});
 });
 
 ```
@@ -91,6 +69,11 @@ youtrack.tags.all().then((tags) => {
 // get all projects
 youtrack.projects.all().then((projects) => {
     console.dir(projects);
+});
+
+// get a project by its id
+youtrack.projects.byId('0-0').then((project) => {
+    console.dir(project);
 });
 
 ```
