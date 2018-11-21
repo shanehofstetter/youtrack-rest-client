@@ -5,6 +5,7 @@ Client library for accessing the youtrack rest api
 ![npm](https://img.shields.io/npm/v/youtrack-rest-client.svg)
 ![NpmLicense](https://img.shields.io/npm/l/youtrack-rest-client.svg)
 
+## ! Important Note: This project is in the process of switching to the new youtrack REST API, which will result in a major release with breaking changes. 
 
 ## Install
 ```
