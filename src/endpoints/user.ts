@@ -4,7 +4,7 @@ import {ReducedUserImpl, ReducedUser, User, UserImpl} from "..";
 export namespace UserPaths {
     export const current = '/admin/users/me';
     export const users = '/admin/users';
-    export const user = '/admin/users/{id}';
+    export const user = '/admin/users/{userId}';
 }
 
 export class UserEndpoint extends BaseEndpoint {
