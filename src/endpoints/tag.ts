@@ -1,11 +1,14 @@
 import {BaseEndpoint} from "./base";
-import {urls} from "../config/urls";
 import {Tag} from "..";
+
+export namespace TagPaths {
+    export const tags = '/user/tag';
+}
 
 export class TagEndpoint extends BaseEndpoint {
 
     public all(): Promise<Tag[]> {
-        return this.toPromise<Tag[]>(this.client.get(urls.TAGS)).then(response => {
+        return this.toPromise<Tag[]>(this.client.get(TagPaths.tags)).then(response => {
             return response;
         });
     }

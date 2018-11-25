@@ -1,19 +1,23 @@
 import xml = require("xml");
 import {BaseEndpoint} from "./base";
-import {urls} from "../config/urls";
 import {headers} from "../config/headers";
 import {WorkItem} from "..";
+
+export namespace WorkItemPaths {
+    export const workitems: string = '/issue/{issueId}/timetracking/workitem';
+    export const workitem: string = '/issue/{issueId}/timetracking/workitem/{workItemId}';
+}
 
 export class WorkItemEndpoint extends BaseEndpoint {
 
     public all(issueId: string): Promise<WorkItem[]> {
-        return this.toPromise<WorkItem[]>(this.client.get(this.format(urls.WORK_ITEMS, {issueId}))).then(response => {
+        return this.toPromise<WorkItem[]>(this.client.get(this.format(WorkItemPaths.workitems, {issueId}))).then(response => {
             return response;
         });
     }
 
     public create(issueId: string, workItem: WorkItem): Promise<string> {
-        return this.toPromise(this.client.post(this.format(urls.WORK_ITEMS, {issueId}), {
+        return this.toPromise(this.client.post(this.format(WorkItemPaths.workitems, {issueId}), {
             resolveWithFullResponse: true,
             body: this.workItemToXML(workItem),
             json: false
@@ -24,7 +28,7 @@ export class WorkItemEndpoint extends BaseEndpoint {
     }
 
     public edit(issueId: string, workItem: WorkItem): Promise<string> {
-        return this.toPromise(this.client.put(this.format(urls.WORK_ITEM, {issueId, workItemId: workItem.id}), {
+        return this.toPromise(this.client.put(this.format(WorkItemPaths.workitem, {issueId, workItemId: workItem.id}), {
             body: xml({
                 workItem: [
                     {duration: workItem.duration},
@@ -37,7 +41,7 @@ export class WorkItemEndpoint extends BaseEndpoint {
     }
 
     public delete(issueId: string, workItemId: string): Promise<any> {
-        return this.toPromise(this.client.delete(this.format(urls.WORK_ITEM, {issueId, workItemId})));
+        return this.toPromise(this.client.delete(this.format(WorkItemPaths.workitem, {issueId, workItemId})));
     }
 
     private workItemToXML(workItem: WorkItem): string {

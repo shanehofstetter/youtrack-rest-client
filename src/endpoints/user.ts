@@ -1,14 +1,18 @@
 import {BaseEndpoint} from "./base";
-import {urls} from "../config/urls";
 import {ReducedUserImpl, ReducedUser, User, UserImpl} from "..";
+
+export namespace UserPaths {
+    export const current = '/admin/users/me';
+    export const users = '/admin/users';
+}
 
 export class UserEndpoint extends BaseEndpoint {
 
     public current(): Promise<User> {
-        return this.getResourceWithFields<User>(urls.USER_CURRENT, UserImpl);
+        return this.getResourceWithFields<User>(UserPaths.current, UserImpl);
     }
 
     public all(): Promise<ReducedUser[]> {
-        return this.getResourceWithFields<ReducedUser[]>(urls.USERS, ReducedUserImpl);
+        return this.getResourceWithFields<ReducedUser[]>(UserPaths.users, ReducedUserImpl);
     }
 }
