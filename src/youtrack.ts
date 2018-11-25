@@ -5,7 +5,6 @@ import * as request from "request-promise";
 import {RequestPromise} from "request-promise";
 import {UserEndpoint} from "./endpoints/user";
 import {TagEndpoint} from "./endpoints/tag";
-import {SearchEndpoint} from "./endpoints/search";
 import {IssueEndpoint} from "./endpoints/issue";
 import {ProjectEndpoint} from "./endpoints/project";
 import {WorkItemEndpoint} from "./endpoints/workitem";
@@ -22,7 +21,6 @@ export interface YoutrackClient {
     put(url: string, params?: {}, headers?: {}): RequestPromise;
 
     readonly users: UserEndpoint;
-    readonly searches: SearchEndpoint;
     readonly tags: TagEndpoint;
     readonly issues: IssueEndpoint;
     readonly projects: ProjectEndpoint;
@@ -39,7 +37,6 @@ export class Youtrack implements YoutrackClient {
     private readonly baseUrl: string;
     private defaultRequestOptions: RequestOptions = {jar: true, json: true};
     public readonly users: UserEndpoint;
-    public readonly searches: SearchEndpoint;
     public readonly tags: TagEndpoint;
     public readonly issues: IssueEndpoint;
     public readonly projects: ProjectEndpoint;
@@ -55,7 +52,6 @@ export class Youtrack implements YoutrackClient {
         };
         this.baseUrl = this.formBaseUrl(options.baseUrl);
         this.users = new UserEndpoint(this);
-        this.searches = new SearchEndpoint(this);
         this.tags = new TagEndpoint(this);
         this.issues = new IssueEndpoint(this);
         this.projects = new ProjectEndpoint(this);
