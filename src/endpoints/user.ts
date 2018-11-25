@@ -16,4 +16,8 @@ export class UserEndpoint extends BaseEndpoint {
     public all(): Promise<ReducedUser[]> {
         return this.getResourceWithFields<ReducedUser[]>(UserPaths.users, ReducedUserImpl);
     }
+
+    public byId(userId: string): Promise<User> {
+        return this.getResourceWithFields<User>(this.format(UserPaths.user, {userId}), UserImpl);
+    }
 }

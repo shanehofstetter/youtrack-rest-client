@@ -1,8 +1,11 @@
 import {ReducedUser, ReducedUserImpl} from "./user";
 
-export class IssueTagImpl {
+export class ReducedIssueTagImpl {
     name: string = '';
     id: string = '';
+}
+
+export class IssueTagImpl extends ReducedIssueTagImpl {
     // visibleFor: UserGroup;
     // updateableBy: UserGroup;
     untagOnResolve: boolean = false;
@@ -10,5 +13,9 @@ export class IssueTagImpl {
 }
 
 export interface IssueTag extends IssueTagImpl {
+
+}
+
+export interface ReducedIssueTag extends ReducedIssueTagImpl {
 
 }

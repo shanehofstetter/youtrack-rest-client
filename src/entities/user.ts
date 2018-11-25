@@ -1,3 +1,5 @@
+import {ReducedIssueTag, ReducedIssueTagImpl} from "./issueTag";
+
 export class ReducedUserImpl {
     email: string = '';
     fullName: string = '';
@@ -13,7 +15,7 @@ export class UserImpl extends ReducedUserImpl {
     guest: boolean = false;
     jabberAccountName: string = '';
     ringId: string = '';
-    tags: string = '';
+    tags: ReducedIssueTag[] = [new ReducedIssueTagImpl()];
 }
 
 export interface User extends UserImpl {
