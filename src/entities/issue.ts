@@ -1,4 +1,4 @@
-import {Tag} from "./tag";
+import {IssueTag} from "./issueTag";
 import {Comment} from "./comment";
 
 export interface Issue {
@@ -6,7 +6,7 @@ export interface Issue {
     entityId: string;
     field: Field[];
     comment: Comment[];
-    tag: Tag[];
+    tag: IssueTag[];
 }
 
 export interface NewIssue {
