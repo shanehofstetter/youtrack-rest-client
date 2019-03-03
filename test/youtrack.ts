@@ -60,9 +60,9 @@ describe("Youtrack", () => {
                     youtrack.post("/some/resource", {body: "<example>test</example>"}, {'Content-Type': 'application/xml'});
                     assert(expectation.calledOnce);
 
-                    const args = expectation.args[0];
-                    assert(args[0] === '/api/some/resource');
-                    assert.deepStrictEqual(args[1], {
+                    const [[path, payload]] = expectation.args;
+                    assert(path === '/api/some/resource');
+                    assert.deepStrictEqual(payload, {
                         jar: true,
                         json: true,
                         headers: {
