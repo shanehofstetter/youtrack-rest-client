@@ -89,26 +89,26 @@ youtrack.projects.byId('0-0').then((project) => {
 ### Issues
 
 **TODO**:
--[ ] get issue by id
--[ ] search issues (with filter-query, e.g. #Unresolved, #Bug, project: XY)
--[ ] delete issue
--[ ] create new issue
--[ ] optional: execute command on issue, e.g add a tag
+- [ ] get issue by id
+- [ ] search issues (with filter-query, e.g. #Unresolved, #Bug, project: XY)
+- [ ] delete issue
+- [ ] create new issue
+- [ ] optional: execute command on issue, e.g add a tag
 
 ### WorkItems (Time-Tracking)
 
 **TODO**:
--[ ] list workitems of an issue
--[ ] get workitem by id
--[ ] edit workitem 
--[ ] create workitem
--[ ] delete workitem
+- [ ] list workitems of an issue
+- [ ] get workitem by id
+- [ ] edit workitem 
+- [ ] create workitem
+- [ ] delete workitem
 
 ### Issue Comments
 
 **TODO**:
--[ ] list comments of issue
--[ ] get comment by id
--[ ] edit comment 
--[ ] create comment
--[ ] delete comment
+- [ ] list comments of issue
+- [ ] get comment by id
+- [ ] edit comment 
+- [ ] create comment
+- [ ] delete comment
