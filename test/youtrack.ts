@@ -24,11 +24,6 @@ describe("Youtrack", () => {
         assert(youtrack.tags !== null);
     });
 
-    it("instantiates searches endpoint", () => {
-        const youtrack = new Youtrack(configWithToken);
-        assert(youtrack.searches !== null);
-    });
-
     it("instantiates workItems endpoint", () => {
         const youtrack = new Youtrack(configWithToken);
         assert(youtrack.workItems !== null);
