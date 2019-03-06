@@ -1,12 +1,42 @@
-import {IssueTag} from "./issueTag";
-import {Comment} from "./comment";
+import { Comment } from "./comment";
+import { ReducedProject, ReducedProjectImpl } from "./project";
+import { ReducedUser, ReducedUserImpl } from "./user";
+import { IssueTag, IssueTagImpl } from "./issueTag";
+import { ProjectCustomField, ProjectCustomFieldImpl } from "./projectCustomField";
 
-export interface Issue {
-    id: string;
-    entityId: string;
-    field: Field[];
-    comment: Comment[];
-    tag: IssueTag[];
+export class IssueCustomFieldImpl {
+    id: string = '';
+    projectCustomField: ProjectCustomField = new ProjectCustomFieldImpl();
+    value: any = null;
+}
+
+export interface IssueCustomField extends IssueCustomFieldImpl {
+}
+
+export class ReducedIssueImpl {
+    id: string = '';
+    numberInProject: number = 0;
+    created: number = 0;
+    updated: number = 0;
+    project: ReducedProject = new ReducedProjectImpl();
+    summary: string = '';
+    description: string = '';
+}
+
+export class IssueImpl extends ReducedIssueImpl {
+    reporter: ReducedUser = new ReducedUserImpl();
+    updater: ReducedUser = new ReducedUserImpl();
+    wikifiedDescription?: string;
+    usesMarkdown: boolean = false;
+    fields: [IssueCustomField] = [new IssueCustomFieldImpl()];
+    isDraft: boolean = false;
+    tags: [IssueTag] = [new IssueTagImpl()];
+}
+
+export interface Issue extends IssueImpl {
+}
+
+export interface ReducedIssue extends ReducedIssueImpl {
 }
 
 export interface NewIssue {
@@ -29,9 +59,8 @@ export interface Color {
 }
 
 export interface IssueFilterOptions {
-    with?: string;
-    max?: number;
-    after?: number;
+    $skip?: number;
+    $top?: number;
 }
 
 export interface IssueChanges {

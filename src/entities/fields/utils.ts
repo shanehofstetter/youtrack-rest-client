@@ -1,8 +1,12 @@
+export interface GenericObject {
+    [key: string]: any;
+}
+
 const nestedField = (property: string, fields: string[]): string => {
     return `${property}(${fields.join(',')})`;
 };
 
-export const generateFields = (obj: { [key: string]: any }): string[] => {
+export const generateFields = (obj: GenericObject): string[] => {
     return Object.getOwnPropertyNames(obj).map(f => {
         const property = (<any>obj)[f];
         if (typeof property === 'object' && property) {
@@ -16,6 +20,6 @@ export const generateFields = (obj: { [key: string]: any }): string[] => {
     });
 };
 
-export const generateFieldsQuery = (obj: { [key: string]: any }): string => {
+export const generateFieldsQuery = (obj: GenericObject): string => {
     return generateFields(obj).join(',');
 };

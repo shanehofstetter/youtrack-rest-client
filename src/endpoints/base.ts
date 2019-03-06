@@ -1,8 +1,7 @@
-import {YoutrackClient} from "../youtrack";
+import { YoutrackClient } from "../youtrack";
 import * as format from "string-template";
-import {RequestPromise} from "request-promise";
-import {generateFieldsQuery} from "../entities/fields/utils";
-
+import { RequestPromise } from "request-promise";
+import { generateFieldsQuery, GenericObject } from "../entities/fields/utils";
 
 export class BaseEndpoint {
     public constructor(protected client: YoutrackClient) {
@@ -24,7 +23,12 @@ export class BaseEndpoint {
         return this.toPromise<T>(this.client.get(url, params));
     }
 
-    protected getResourceWithFields<T>(url: string, implementation: new() => object): Promise<T> {
-        return this.getResource(url, {qs: {fields: generateFieldsQuery(new implementation())}})
+    protected getResourceWithFields<T>(url: string, implementation: new () => object, options: { qs?: GenericObject } = {}): Promise<T> {
+        return this.getResource(url, {
+            qs: {
+                fields: generateFieldsQuery(new implementation()),
+                ...(options.qs || {})
+            }
+        })
     }
 }
