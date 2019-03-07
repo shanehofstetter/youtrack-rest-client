@@ -12,8 +12,18 @@ export namespace IssuePaths {
 
 export class IssueEndpoint extends BaseEndpoint {
 
+    public byInternalId(internalIssueId: string): Promise<Issue> {
+        return this.getResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId: internalIssueId }), IssueImpl);
+    }
+
     public byId(issueId: string): Promise<Issue> {
-        return this.getResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId }), IssueImpl);
+        return this.getResourceWithFields<Issue>(IssuePaths.issues, IssueImpl, {
+            qs: {
+                query: `issue id: ${issueId}`
+            }
+        }).then((issues: any) => {
+            return <Issue>issues[0];
+        });
     }
 
     public search(query: string, filterOptions: IssueFilterOptions = {}): Promise<ReducedIssue[]> {
@@ -28,7 +38,7 @@ export class IssueEndpoint extends BaseEndpoint {
     }
 
     public delete(issueId: string): Promise<any> {
-        return this.toPromise(this.client.delete(this.format(IssuePaths.issue, { issue: issueId })));
+        return this.toPromise(this.client.delete(this.format(IssuePaths.issue, { issueId })));
     }
 
     public create(issue: NewIssue): Promise<string> {

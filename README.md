@@ -89,10 +89,39 @@ youtrack.projects.byId('0-0').then((project) => {
 
 ### Issues
 
+```typescript
+// search/list issues
+youtrack.issues.search('project: T1').then(issues => {
+    console.log({issues});
+});
+```
+
+```typescript
+// get issue by id
+// this is the visible identifier prefixed with project shortname
+youtrack.issues.byId('T1-2').then(issue => {
+    console.log({issue});
+});
+```
+
+```typescript
+// get issue by its internal youtrack id
+youtrack.issues.byInternalId('2-2').then(issue => {
+    console.log({issue});
+});
+```
+
+```typescript
+// delete an issue
+youtrack.issues.delete('2-2').then(() => {
+    console.log('issue deleted');
+});
+```
+
 **TODO**:
-- [ ] get issue by id
-- [ ] search issues (with filter-query, e.g. #Unresolved, #Bug, project: XY)
-- [ ] delete issue
+- [x] get issue by id
+- [x] search issues (with filter-query, e.g. #Unresolved, #Bug, project: XY)
+- [x] delete issue
 - [ ] create new issue
 - [ ] optional: execute command on issue, e.g add a tag
 
