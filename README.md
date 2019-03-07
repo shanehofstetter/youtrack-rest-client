@@ -98,15 +98,7 @@ youtrack.issues.search('project: T1').then(issues => {
 
 ```typescript
 // get issue by id
-// this is the visible identifier prefixed with project shortname
 youtrack.issues.byId('T1-2').then(issue => {
-    console.log({issue});
-});
-```
-
-```typescript
-// get issue by its internal youtrack id
-youtrack.issues.byInternalId('2-2').then(issue => {
     console.log({issue});
 });
 ```

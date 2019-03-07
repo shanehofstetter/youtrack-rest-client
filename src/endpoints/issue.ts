@@ -12,18 +12,8 @@ export namespace IssuePaths {
 
 export class IssueEndpoint extends BaseEndpoint {
 
-    public byInternalId(internalIssueId: string): Promise<Issue> {
-        return this.getResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId: internalIssueId }), IssueImpl);
-    }
-
     public byId(issueId: string): Promise<Issue> {
-        return this.getResourceWithFields<Issue>(IssuePaths.issues, IssueImpl, {
-            qs: {
-                query: `issue id: ${issueId}`
-            }
-        }).then((issues: any) => {
-            return <Issue>issues[0];
-        });
+        return this.getResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId }), IssueImpl);
     }
 
     public search(query: string, filterOptions: IssueFilterOptions = {}): Promise<ReducedIssue[]> {
