@@ -1,11 +1,10 @@
 # youtrack-rest-client
-Client library for accessing the youtrack rest api
+Client library for accessing the [youtrack rest api](https://www.jetbrains.com/help/youtrack/standalone/youtrack-rest-api-reference.html)
 
 [![Build Status](https://travis-ci.com/shanehofstetter/youtrack-rest-client.svg?branch=master)](https://travis-ci.com/shanehofstetter/youtrack-rest-client)
 ![npm](https://img.shields.io/npm/v/youtrack-rest-client.svg)
 ![NpmLicense](https://img.shields.io/npm/l/youtrack-rest-client.svg)
 
-## ! Important Note: This project is in the process of switching to the new youtrack REST API, which will result in a major release with breaking changes. 
 
 ## Install
 ```
