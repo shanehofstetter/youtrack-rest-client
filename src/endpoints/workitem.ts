@@ -3,9 +3,9 @@ import {BaseEndpoint} from "./base";
 import {headers} from "../config/headers";
 import {WorkItem} from "..";
 
-export namespace WorkItemPaths {
-    export const workitems: string = '/issue/{issueId}/timetracking/workitem';
-    export const workitem: string = '/issue/{issueId}/timetracking/workitem/{workItemId}';
+export const WorkItemPaths = {
+    workitems: '/issue/{issueId}/timetracking/workitem',
+    workitem: '/issue/{issueId}/timetracking/workitem/{workItemId}'
 }
 
 export class WorkItemEndpoint extends BaseEndpoint {

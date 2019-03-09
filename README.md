@@ -148,9 +148,35 @@ youtrack.issues.update({
 
 ### Issue Comments
 
-**TODO**:
-- [ ] list comments of issue
-- [ ] get comment by id
-- [ ] edit comment 
-- [ ] create comment
-- [ ] delete comment
+```typescript
+// list comments of an issue
+youtrack.comments.all('T1-2').then(comments => {
+    console.log({comments});
+});
+```
+
+```typescript
+// add comment to issue
+youtrack.comments.create('T1-2', {
+    text: 'issue comment'
+}).then(comment => {
+    console.log({comment});
+});
+```
+
+```typescript
+// update comment
+youtrack.comments.update('T1-2', {
+    id: '4-1',
+    text: 'updated issue comment'
+}).then(comment => {
+    console.log({comment});
+});
+```
+
+```typescript
+// delete a comment
+youtrack.comments.delete('T1-2', '4-1').then(() => {
+    console.log('comment deleted.');
+});
+```

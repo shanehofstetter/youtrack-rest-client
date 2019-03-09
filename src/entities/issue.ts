@@ -1,4 +1,3 @@
-import { Comment } from "./comment";
 import { ReducedProject, ReducedProjectImpl } from "./project";
 import { ReducedUser, ReducedUserImpl } from "./user";
 import { IssueTag, IssueTagImpl } from "./issueTag";
@@ -48,43 +47,7 @@ export interface UpdateIssue extends Issue {
     id: string;
 }
 
-export interface Field {
-    name: string;
-    value: string | any[];
-    valueId?: string | any[];
-    color?: Color | null;
-}
-
-export interface Color {
-    bg: string;
-    fg: string;
-}
-
 export interface IssueFilterOptions {
     $skip?: number;
     $top?: number;
-}
-
-export interface IssueChanges {
-    issue: Issue;
-    change: IssueChange[];
-}
-
-export interface FieldChange {
-    name: string;
-    value: any;
-    oldValue: any;
-}
-
-export interface IssueChange {
-    field: FieldChange[];
-    comment: Comment[];
-}
-
-export interface IssueCommand {
-    command?: string;
-    comment?: string;
-    group?: string;
-    disableNotifications?: boolean;
-    runAs?: string;
 }

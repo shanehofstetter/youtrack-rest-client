@@ -1,9 +1,9 @@
 import {BaseEndpoint} from "./base";
 import {ReducedProjectImpl, Project, ProjectImpl, ReducedProject} from "..";
 
-export namespace ProjectPaths {
-    export const projects = '/admin/projects';
-    export const project = '/admin/projects/{projectId}';
+export const ProjectPaths = {
+    projects: '/admin/projects',
+    project: '/admin/projects/{projectId}'
 }
 
 export class ProjectEndpoint extends BaseEndpoint {

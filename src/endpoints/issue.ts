@@ -1,14 +1,14 @@
 import { BaseEndpoint } from "./base";
-import { Issue, IssueChanges, IssueCommand, IssueFilterOptions, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue } from "..";
+import { Issue, IssueFilterOptions, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue } from "..";
 import { UpdateIssue } from "../entities/issue";
 
-export namespace IssuePaths {
-    export const issue = '/issues/{issueId}';
-    export const issues = '/issues';
-    export const execute = '/issue/{issue}/execute';
-    export const exists = '/issue/{issue}/exists';
-    export const history = '/issue/{issue}/history';
-    export const changes = '/issue/{issue}/changes';
+export const IssuePaths = {
+    issue: '/issues/{issueId}',
+    issues: '/issues',
+    execute: '/issue/{issue}/execute',
+    exists: '/issue/{issue}/exists',
+    history: '/issue/{issue}/history',
+    changes: '/issue/{issue}/changes'
 }
 
 export class IssueEndpoint extends BaseEndpoint {
