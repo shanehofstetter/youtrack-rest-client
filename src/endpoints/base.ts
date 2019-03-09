@@ -23,8 +23,26 @@ export class BaseEndpoint {
         return this.toPromise<T>(this.client.get(url, params));
     }
 
+    protected postResource<T>(url: string, params = {}): Promise<T> {
+        return this.toPromise<T>(this.client.post(url, params));
+    }
+
     protected getResourceWithFields<T>(url: string, implementation: new () => object, options: { qs?: GenericObject } = {}): Promise<T> {
         return this.getResource(url, {
+            qs: {
+                fields: generateFieldsQuery(new implementation()),
+                ...(options.qs || {})
+            }
+        })
+    }
+
+    protected postResourceWithFields<T>(url: string, implementation: new () => object, options: {
+        qs?: GenericObject,
+        body?: any,
+        form?: any
+    } = {}): Promise<T> {
+        return this.postResource(url, {
+            ...options,
             qs: {
                 fields: generateFieldsQuery(new implementation()),
                 ...(options.qs || {})

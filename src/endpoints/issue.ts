@@ -1,5 +1,6 @@
 import { BaseEndpoint } from "./base";
-import { Issue, IssueChanges, IssueCommand, IssueFilterOptions, NewIssue, IssueImpl, ReducedIssue, ReducedIssueImpl } from "..";
+import { Issue, IssueChanges, IssueCommand, IssueFilterOptions, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue } from "..";
+import { UpdateIssue } from "../entities/issue";
 
 export namespace IssuePaths {
     export const issue = '/issues/{issueId}';
@@ -17,13 +18,11 @@ export class IssueEndpoint extends BaseEndpoint {
     }
 
     public search(query: string, filterOptions: IssueFilterOptions = {}): Promise<ReducedIssue[]> {
-        return this.getResourceWithFields<ReducedIssue>(IssuePaths.issues, ReducedIssueImpl, {
+        return this.getResourceWithFields<ReducedIssue[]>(IssuePaths.issues, ReducedIssueImpl, {
             qs: {
                 query,
                 ...filterOptions
             }
-        }).then((issues: any) => {
-            return <ReducedIssue[]>issues;
         });
     }
 
@@ -31,33 +30,15 @@ export class IssueEndpoint extends BaseEndpoint {
         return this.toPromise(this.client.delete(this.format(IssuePaths.issue, { issueId })));
     }
 
-    public create(issue: NewIssue): Promise<string> {
-        return this.toPromise(this.client.put(IssuePaths.issues, {
-            qs: issue,
-            resolveWithFullResponse: true
-        })).then((response: any) => {
-            const location = response.headers.location;
-            return location.match(/\/issue\/([\S\-]+)$/)[0].replace("/issue/", "");
+    public create(issue: NewIssue): Promise<Issue> {
+        return this.postResourceWithFields<Issue>(IssuePaths.issues, IssueImpl, {
+            body: issue
         });
     }
 
-    public history(issueId: string): Promise<Issue[]> {
-        return this.toPromise<Issue[]>(this.client.get(this.format(IssuePaths.history, { issue: issueId })));
-    }
-
-    public changes(issueId: string): Promise<IssueChanges> {
-        return this.toPromise<IssueChanges>(this.client.get(this.format(IssuePaths.changes, { issue: issueId })));
-    }
-
-    public exists(issueId: string): Promise<boolean> {
-        return Promise.resolve(this.client.get(this.format(IssuePaths.exists, { issue: issueId })).then(() => {
-            return Promise.resolve(true);
-        }).catch(() => Promise.resolve(false)));
-    }
-
-    public execute(issueId: string, issueCommand: IssueCommand): Promise<any> {
-        return this.toPromise(this.client.post(this.format(IssuePaths.execute, { issue: issueId }), {
-            form: issueCommand
-        }));
+    public update(issue: UpdateIssue): Promise<Issue> {
+        return this.postResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId: issue.id }), IssueImpl, {
+            body: issue
+        });
     }
 }

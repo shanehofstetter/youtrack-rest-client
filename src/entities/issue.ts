@@ -14,23 +14,23 @@ export interface IssueCustomField extends IssueCustomFieldImpl {
 }
 
 export class ReducedIssueImpl {
-    id: string = '';
-    numberInProject: number = 0;
-    created: number = 0;
-    updated: number = 0;
-    project: ReducedProject = new ReducedProjectImpl();
-    summary: string = '';
-    description: string = '';
+    id?: string = '';
+    numberInProject?: number = 0;
+    created?: number = 0;
+    updated?: number = 0;
+    project?: ReducedProject = new ReducedProjectImpl();
+    summary?: string = '';
+    description?: string = '';
 }
 
 export class IssueImpl extends ReducedIssueImpl {
-    reporter: ReducedUser = new ReducedUserImpl();
-    updater: ReducedUser = new ReducedUserImpl();
+    reporter?: ReducedUser = new ReducedUserImpl();
+    updater?: ReducedUser = new ReducedUserImpl();
     wikifiedDescription?: string;
-    usesMarkdown: boolean = false;
-    fields: [IssueCustomField] = [new IssueCustomFieldImpl()];
-    isDraft: boolean = false;
-    tags: [IssueTag] = [new IssueTagImpl()];
+    usesMarkdown?: boolean = false;
+    fields?: [IssueCustomField] = [new IssueCustomFieldImpl()];
+    isDraft?: boolean = false;
+    tags?: [IssueTag] = [new IssueTagImpl()];
 }
 
 export interface Issue extends IssueImpl {
@@ -39,11 +39,13 @@ export interface Issue extends IssueImpl {
 export interface ReducedIssue extends ReducedIssueImpl {
 }
 
-export interface NewIssue {
-    project: string;
+export interface NewIssue extends Issue {
+    project: { id: string };
     summary: string;
-    description?: string;
-    permittedGroup?: string;
+}
+
+export interface UpdateIssue extends Issue {
+    id: string;
 }
 
 export interface Field {

@@ -110,12 +110,33 @@ youtrack.issues.delete('2-2').then(() => {
 });
 ```
 
+```typescript
+// create a new issue
+youtrack.issues.create({
+    summary: 'lorem ipsum',
+    description: 'created using rest api',
+    project: {
+        id: '0-0'
+    }
+}).then(issue => {
+    console.log({issue});
+});
+```
+
+```typescript
+// update an issue
+youtrack.issues.update({
+    id: 'T1-2',
+    summary: "updated summary"
+}).then(issue => {
+    console.log({issue});
+});
+```
+
+### Commands
+
 **TODO**:
-- [x] get issue by id
-- [x] search issues (with filter-query, e.g. #Unresolved, #Bug, project: XY)
-- [x] delete issue
-- [ ] create new issue
-- [ ] optional: execute command on issue, e.g add a tag
+- [ ] execute commands on issues (https://www.jetbrains.com/help/youtrack/standalone/api-commands.html)
 
 ### WorkItems (Time-Tracking)
 

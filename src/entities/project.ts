@@ -3,9 +3,9 @@ import {ProjectCustomField, ProjectCustomFieldImpl} from "./projectCustomField";
 
 export class ReducedProjectImpl {
     id: string = '';
-    name: string = '';
+    name?: string = '';
     shortName?: string = '';
-    description: string = '';
+    description?: string = '';
     archived?: boolean = false;
 }
 
