@@ -2,7 +2,7 @@ import {ReducedUser, ReducedUserImpl} from "./user";
 import {ProjectCustomField, ProjectCustomFieldImpl} from "./projectCustomField";
 
 export class ReducedProjectImpl {
-    id: string = '';
+    id?: string = '';
     name?: string = '';
     shortName?: string = '';
     description?: string = '';

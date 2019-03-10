@@ -9,6 +9,7 @@ export * from "./entities/projectCustomField";
 export * from "./entities/issueTag";
 export * from "./entities/user";
 export * from "./entities/workItem";
+export * from "./entities/command";
 
 export * from "./endpoints/comment";
 export * from "./endpoints/issue";

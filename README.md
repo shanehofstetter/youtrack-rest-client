@@ -134,8 +134,34 @@ youtrack.issues.update({
 
 ### Commands
 
-**TODO**:
-- [ ] execute commands on issues (https://www.jetbrains.com/help/youtrack/standalone/api-commands.html)
+```typescript
+// execute command for issue(s) (internal id is used)
+youtrack.issues.executeCommand({
+    query: 'for me',
+    issues: [
+        {
+            id: '2-6'
+        }
+    ]
+}).then(response => {
+    console.log(toJson(response));
+});
+```
+
+```typescript
+// execute command for issue(s) and add a comment
+youtrack.issues.executeCommand({
+    query: 'for me',
+    comment: 'gonna solve this real quick',
+    issues: [
+        {
+            id: '2-6'
+        }
+    ]
+}).then(response => {
+    console.log(toJson(response));
+});
+```
 
 ### WorkItems (Time-Tracking)
 

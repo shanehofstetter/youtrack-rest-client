@@ -1,14 +1,15 @@
 import { BaseEndpoint } from "./base";
 import { Issue, IssueFilterOptions, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue } from "..";
 import { UpdateIssue } from "../entities/issue";
+import { Command, CommandList, CommandListImpl } from "../entities/command";
 
 export const IssuePaths = {
     issue: '/issues/{issueId}',
     issues: '/issues',
-    execute: '/issue/{issue}/execute',
-    exists: '/issue/{issue}/exists',
-    history: '/issue/{issue}/history',
-    changes: '/issue/{issue}/changes'
+}
+
+export const CommandPaths = {
+    commands: '/commands'
 }
 
 export class IssueEndpoint extends BaseEndpoint {
@@ -39,6 +40,12 @@ export class IssueEndpoint extends BaseEndpoint {
     public update(issue: UpdateIssue): Promise<Issue> {
         return this.postResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId: issue.id }), IssueImpl, {
             body: issue
+        });
+    }
+
+    public executeCommand(command: Command): Promise<CommandList> {
+        return this.postResourceWithFields<CommandList>(CommandPaths.commands, CommandListImpl, {
+            body: command
         });
     }
 }
