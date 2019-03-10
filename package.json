@@ -32,14 +32,12 @@
   },
   "homepage": "https://github.com/shanehofstetter/youtrack-rest-client#readme",
   "dependencies": {
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2",
-    "string-template": "^1.0.0",
     "@types/request": "^2.48.0",
     "@types/request-promise": "^4.1.42",
     "@types/string-template": "^1.0.2",
-    "@types/xml": "^1.0.2",
-    "xml": "^1.0.1"
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "string-template": "^1.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^5.2.5",

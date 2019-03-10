@@ -144,7 +144,7 @@ youtrack.issues.executeCommand({
         }
     ]
 }).then(response => {
-    console.log(toJson(response));
+    console.log({response});
 });
 ```
 
@@ -159,18 +159,60 @@ youtrack.issues.executeCommand({
         }
     ]
 }).then(response => {
-    console.log(toJson(response));
+    console.log({response});
 });
 ```
 
 ### WorkItems (Time-Tracking)
 
-**TODO**:
-- [ ] list workitems of an issue
-- [ ] get workitem by id
-- [ ] edit workitem 
-- [ ] create workitem
-- [ ] delete workitem
+```typescript
+// get the configured workitem types for the project
+youtrack.projects.getWorkItemTypes('0-0').then(workItemTypes => {
+    console.log({workItemTypes});
+});
+```
+
+```typescript
+// list the workitems of a project
+youtrack.workItems.all('T1-2').then(workItems => {
+    console.log({workItems});
+});
+```
+
+```typescript
+// add new workitem to project
+youtrack.workItems.create('T1-2', {
+    duration: {
+        presentation: '30m'
+    },
+    text: 'fixed bug',
+    type: {
+        name: 'Development',
+        id: '77-0'
+    }
+}).then(workItem => {
+    console.log({workItem});
+});
+```
+
+```typescript
+// update workitem
+youtrack.workItems.update('T1-2', {
+    id: '116-3',
+    duration: {
+        presentation: '45m'
+    }
+}).then(workItem => {
+    console.log({workItem});
+});
+```
+
+```typescript
+// delete work item
+youtrack.workItems.delete('T1-2', '116-3').then(() => {
+    console.log('workitem deleted.');
+});
+```
 
 ### Issue Comments
 

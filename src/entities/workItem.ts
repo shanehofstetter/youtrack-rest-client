@@ -1,28 +1,42 @@
-export interface Author {
-    login: string;
-    ringId: string;
-    url: string;
+import { ReducedIssue, ReducedIssueImpl } from "./issue";
+import { ReducedUserImpl, ReducedUser } from "./user";
+
+export class DurationValueImpl {
+    presentation?: string = '';
+    id?: string = '';
+    minutes?: number = 0;
 }
 
-export interface WorkType {
-    name: string;
-    id?: string;
-    autoAttached?: boolean;
-    url?: string;
+export interface DurationValue extends DurationValueImpl {
 }
 
-export interface WorkItem {
-    id?: string;
-    duration: number;
-    /**
-     * the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this date
-     */
-    date: number;
-    /**
-     * the number of milliseconds since January 1, 1970, 00:00:00 GMT represented by this date
-     */
-    created?: number;
-    description: string;
-    author?: Author;
-    worktype?: WorkType;
+export class WorkItemTypeImpl {
+    id?: string = '';
+    name?: string = '';
+    autoAttached?: boolean = false;
+}
+
+export interface WorkItemType extends WorkItemTypeImpl {
+}
+
+export class WorkItemImpl {
+    id?: string = '';
+    created?: number = 0;
+    date?: number = 0;
+    duration?: DurationValue = new DurationValueImpl();
+    issue?: ReducedIssue = new ReducedIssueImpl();
+    updated?: number = 0;
+    author?: ReducedUser = new ReducedUserImpl();
+    creator?: ReducedUser = new ReducedUserImpl();
+    text?: string = '';
+    textPreview?: string = '';
+    type?: WorkItemType = new WorkItemTypeImpl();
+    usesMarkdown?: boolean = false;
+}
+
+export interface WorkItem extends WorkItemImpl {
+}
+
+export interface UpdateWorkItem extends WorkItemImpl {
+    id: string;
 }
