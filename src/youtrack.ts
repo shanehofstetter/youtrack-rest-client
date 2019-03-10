@@ -2,13 +2,13 @@ import {
     YoutrackTokenOptions
 } from "./options/youtrack_options";
 import * as request from "request-promise";
-import {RequestPromise} from "request-promise";
-import {UserEndpoint} from "./endpoints/user";
-import {TagEndpoint} from "./endpoints/tag";
-import {IssueEndpoint} from "./endpoints/issue";
-import {ProjectEndpoint} from "./endpoints/project";
-import {WorkItemEndpoint} from "./endpoints/workitem";
-import {CommentEndpoint} from "./endpoints/comment";
+import { RequestPromise } from "request-promise";
+import { UserEndpoint } from "./endpoints/user";
+import { TagEndpoint } from "./endpoints/tag";
+import { IssueEndpoint } from "./endpoints/issue";
+import { ProjectEndpoint } from "./endpoints/project";
+import { WorkItemEndpoint } from "./endpoints/workitem";
+import { CommentEndpoint } from "./endpoints/comment";
 
 export interface YoutrackClient {
 
@@ -35,7 +35,7 @@ interface RequestOptions {
 export class Youtrack implements YoutrackClient {
 
     private readonly baseUrl: string;
-    private defaultRequestOptions: RequestOptions = {jar: true, json: true};
+    private defaultRequestOptions: RequestOptions = { jar: true, json: true };
     public readonly users: UserEndpoint;
     public readonly tags: TagEndpoint;
     public readonly issues: IssueEndpoint;
@@ -88,12 +88,12 @@ export class Youtrack implements YoutrackClient {
     private prepareParams(params: {}, customHeaders: {}): {} {
         if ('headers' in this.defaultRequestOptions && Object.keys(customHeaders).length > 0) {
             // merge the header parameters
-            const {headers, ...defaultOptions} = this.defaultRequestOptions;
-            return {...defaultOptions, ...params, headers: {...headers, ...customHeaders}};
+            const { headers, ...defaultOptions } = this.defaultRequestOptions;
+            return { ...defaultOptions, ...params, headers: { ...headers, ...customHeaders } };
         }
         if ('headers' in this.defaultRequestOptions) {
-            return {...this.defaultRequestOptions, ...params}
+            return { ...this.defaultRequestOptions, ...params }
         }
-        return {...this.defaultRequestOptions, ...params, headers: {...customHeaders}}
+        return { ...this.defaultRequestOptions, ...params, headers: { ...customHeaders } }
     }
 }
