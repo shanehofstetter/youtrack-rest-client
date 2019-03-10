@@ -30,6 +30,9 @@ const config = {
 const youtrack = new Youtrack(config);
 ```
 
+**With username/password**  
+The new REST API does not support logging in with username/password anymore, if you require this you need to use the old REST API ([youtrack-rest-client version 0.3.x](https://github.com/shanehofstetter/youtrack-rest-client/releases/tag/v0.3.2)).
+
 ### User
 
 ```typescript
