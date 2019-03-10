@@ -23,7 +23,10 @@ yarn add youtrack-rest-client
 ```typescript
 import {Youtrack} from "youtrack-rest-client";
 
-const config = {baseUrl: "http://example.myjetbrains.com", token: "perm:your-token"};
+const config = {
+    baseUrl: "http://example.myjetbrains.com", 
+    token: "perm:your-token"
+};
 const youtrack = new Youtrack(config);
 ```
 
