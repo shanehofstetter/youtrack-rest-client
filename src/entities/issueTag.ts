@@ -1,4 +1,4 @@
-import {ReducedUser, ReducedUserImpl} from "./user";
+import { ReducedUser, ReducedUserImpl } from "./user";
 
 export class ReducedIssueTagImpl {
     name: string = '';
@@ -13,9 +13,7 @@ export class IssueTagImpl extends ReducedIssueTagImpl {
 }
 
 export interface IssueTag extends IssueTagImpl {
-
 }
 
 export interface ReducedIssueTag extends ReducedIssueTagImpl {
-
 }

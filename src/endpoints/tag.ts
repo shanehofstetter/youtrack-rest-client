@@ -3,27 +3,27 @@ import {IssueTag, IssueTagImpl} from "../entities/issueTag";
 import {UserPaths} from "./user";
 
 export const TagPaths = {
-    user_tags: UserPaths.user + '/tags',
-    current_user_tags: UserPaths.current + '/tags',
-    current_user_tag: UserPaths.current + '/tags' + '/{tagId}',
-    user_tag: UserPaths.user + '/tags' + '/{tagId}'
+    userTags: UserPaths.user + '/tags',
+    currentUserTags: UserPaths.current + '/tags',
+    currentUserTag: UserPaths.current + '/tags' + '/{tagId}',
+    userTag: UserPaths.user + '/tags' + '/{tagId}'
 }
 
 export class TagEndpoint extends BaseEndpoint {
 
     public allForUser(userId: string): Promise<IssueTag[]> {
-        return this.getResourceWithFields<IssueTag[]>(this.format(TagPaths.user_tags, {userId}), IssueTagImpl);
+        return this.getResourceWithFields<IssueTag[]>(this.format(TagPaths.userTags, {userId}), IssueTagImpl);
     }
 
     public all(): Promise<IssueTag[]> {
-        return this.getResourceWithFields<IssueTag[]>(TagPaths.current_user_tags, IssueTagImpl);
+        return this.getResourceWithFields<IssueTag[]>(TagPaths.currentUserTags, IssueTagImpl);
     }
 
     public byId(tagId: string): Promise<IssueTag> {
-        return this.getResourceWithFields<IssueTag>(this.format(TagPaths.current_user_tag, {tagId}), IssueTagImpl);
+        return this.getResourceWithFields<IssueTag>(this.format(TagPaths.currentUserTag, {tagId}), IssueTagImpl);
     }
 
     public byIdForUser(userId: string, tagId: string): Promise<IssueTag> {
-        return this.getResourceWithFields<IssueTag>(this.format(TagPaths.user_tag, {userId, tagId}), IssueTagImpl);
+        return this.getResourceWithFields<IssueTag>(this.format(TagPaths.userTag, {userId, tagId}), IssueTagImpl);
     }
 }
