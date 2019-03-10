@@ -19,4 +19,5 @@ export interface CommandList extends CommandListImpl {
 
 export interface Command extends CommandList {
     query: string;
+    issues: { id: string }[];
 }
