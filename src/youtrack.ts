@@ -7,6 +7,8 @@ import { UserEndpoint } from "./endpoints/user";
 import { TagEndpoint } from "./endpoints/tag";
 import { IssueEndpoint } from "./endpoints/issue";
 import { ProjectEndpoint } from "./endpoints/project";
+import { AgileEndpoint } from "./endpoints/agile";
+import { SprintEndpoint } from "./endpoints/sprint";
 import { WorkItemEndpoint } from "./endpoints/workitem";
 import { CommentEndpoint } from "./endpoints/comment";
 
@@ -24,6 +26,8 @@ export interface YoutrackClient {
     readonly tags: TagEndpoint;
     readonly issues: IssueEndpoint;
     readonly projects: ProjectEndpoint;
+    readonly agiles: AgileEndpoint;
+    readonly sprints: SprintEndpoint;
     readonly workItems: WorkItemEndpoint;
     readonly comments: CommentEndpoint;
 }
@@ -40,6 +44,8 @@ export class Youtrack implements YoutrackClient {
     public readonly tags: TagEndpoint;
     public readonly issues: IssueEndpoint;
     public readonly projects: ProjectEndpoint;
+    public readonly agiles: AgileEndpoint;
+    public readonly sprints: SprintEndpoint;
     public readonly workItems: WorkItemEndpoint;
     public readonly comments: CommentEndpoint;
 
@@ -55,6 +61,8 @@ export class Youtrack implements YoutrackClient {
         this.tags = new TagEndpoint(this);
         this.issues = new IssueEndpoint(this);
         this.projects = new ProjectEndpoint(this);
+        this.agiles = new AgileEndpoint(this);
+        this.sprints = new SprintEndpoint(this);
         this.workItems = new WorkItemEndpoint(this);
         this.comments = new CommentEndpoint(this);
     }
