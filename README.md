@@ -33,7 +33,7 @@ const youtrack = new Youtrack(config);
 **With username/password**  
 The new REST API does not support logging in with username/password anymore, if you require this you need to use the old REST API ([youtrack-rest-client version 0.3.x](https://github.com/shanehofstetter/youtrack-rest-client/releases/tag/v0.3.2)).
 
-### User
+### [Users](https://www.jetbrains.com/help/youtrack/incloud/api-entity-User.html)
 
 ```typescript
 
@@ -55,7 +55,7 @@ youtrack.users.byId('1-1').then((user: User) => {
 ```
 
 
-### Projects
+### [Projects](https://www.jetbrains.com/help/youtrack/incloud/api-entity-Project.html)
 ```typescript
 
 // get all projects
@@ -70,7 +70,7 @@ youtrack.projects.byId('0-0').then((project: Project) => {
 
 ```
 
-### Issues
+### [Issues](https://www.jetbrains.com/help/youtrack/incloud/api-entity-Issue.html)
 
 ```typescript
 // search/list issues
@@ -116,7 +116,7 @@ youtrack.issues.update({
 });
 ```
 
-### Commands
+### [Commands](https://www.jetbrains.com/help/youtrack/incloud/api-entity-CommandList.html)
 
 ```typescript
 // execute command for issue(s) (internal id is used)
@@ -147,7 +147,7 @@ youtrack.issues.executeCommand({
 });
 ```
 
-### WorkItems (Time-Tracking)
+### [WorkItems (Time-Tracking)](https://www.jetbrains.com/help/youtrack/incloud/api-entity-IssueWorkItem.html)
 
 ```typescript
 // get the configured workitem types for the project
@@ -198,7 +198,7 @@ youtrack.workItems.delete('T1-2', '116-3').then(() => {
 });
 ```
 
-### Issue Comments
+### [Issue Comments](https://www.jetbrains.com/help/youtrack/incloud/api-entity-IssueComment.html)
 
 ```typescript
 // list comments of an issue
@@ -233,7 +233,7 @@ youtrack.comments.delete('T1-2', '4-1').then(() => {
 });
 ```
 
-### Tags
+### [Issue Tags](https://www.jetbrains.com/help/youtrack/incloud/api-entity-IssueTag.html)
 ```typescript
 
 // get all tags
@@ -254,4 +254,69 @@ youtrack.tags.byId('6-0').then((tag: IssueTag) => {
 youtrack.tags.byIdForUser('1-1', '6-0').then((tag: IssueTag) => {
     console.log({tag});
 });
+```
+
+### [Agiles](https://www.jetbrains.com/help/youtrack/incloud/api-entity-Agile.html)
+```typescript
+
+// get all agile boards
+youtrack.agiles.all().then((agiles: ReducedAgile[]) => {
+    console.log({agiles});
+});
+
+// get specific agile board by id
+youtrack.agiles.byId('104-0').then((agile: Agile) => {
+    console.log({agile});
+});
+
+// create new agile board
+youtrack.agiles.create({
+    name: '19-15',
+    projects: [{ id: '0-0' }]
+}).then((agile: Agile) => {
+    console.log({agile});
+});
+
+// delete an agile board 
+youtrack.agiles.delete('104-1').then(() => {
+    console.log('agile deleted.');
+});
+
+// update an agile board
+youtrack.agiles.update({ id: '104-0', projects: [{ id: '0-0' }] }).then((agile: Agile) => {
+    console.log({agile});
+});
+```
+
+### [Sprints](https://www.jetbrains.com/help/youtrack/incloud/api-entity-Sprint.html)
+
+```typescript
+
+const agileId = '104-0';
+
+// get all sprints of an agile board
+youtrack.sprints.all(agileId).then((sprints: ReducedSprint[]) => {
+    console.log({sprints});
+});
+
+// get agile sprint by id
+youtrack.sprints.byId(agileId, '105-0').then((sprint: Sprint) => {
+    console.log({sprint});
+});
+
+// create new sprint
+youtrack.sprints.create(agileId, { name: 'my sprint' }).then((sprint: Sprint) => {
+    console.log({sprint});
+});
+
+// update a sprint
+youtrack.sprints.update(agileId, { id: '105-3', name: 'my sprint 3' }).then((sprint: Sprint) => {
+    console.log({sprint});
+});
+
+// delete a sprint
+youtrack.sprints.delete(agileId, '105-2').then(() => {
+    console.log('sprint deleted.');
+});
+
 ```
