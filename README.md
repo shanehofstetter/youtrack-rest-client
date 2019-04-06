@@ -54,39 +54,17 @@ youtrack.users.byId('1-1').then((user: User) => {
 
 ```
 
-### Tags
-```typescript
-
-// get all tags
-youtrack.tags.all().then((tags: IssueTag[]) => {
-    console.log({tags});
-});
-
-// get tags available for user
-youtrack.tags.allForUser('1-1').then((tags: IssueTag[]) => {
-    console.log({tags});
-});
-
-// get tag by id
-youtrack.tags.byId('6-0').then((tag: IssueTag) => {
-    console.log({tag});
-});
-
-youtrack.tags.byIdForUser('1-1', '6-0').then((tag: IssueTag) => {
-    console.log({tag});
-});
-```
 
 ### Projects
 ```typescript
 
 // get all projects
-youtrack.projects.all().then((projects) => {
+youtrack.projects.all().then((projects: ReducedProject[]) => {
     console.dir(projects);
 });
 
 // get a project by its id
-youtrack.projects.byId('0-0').then((project) => {
+youtrack.projects.byId('0-0').then((project: Project) => {
     console.dir(project);
 });
 
@@ -96,14 +74,14 @@ youtrack.projects.byId('0-0').then((project) => {
 
 ```typescript
 // search/list issues
-youtrack.issues.search('project: T1').then(issues => {
+youtrack.issues.search('project: T1').then((issues: ReducedIssue[]) => {
     console.log({issues});
 });
 ```
 
 ```typescript
 // get issue by id
-youtrack.issues.byId('T1-2').then(issue => {
+youtrack.issues.byId('T1-2').then((issue: Issue) => {
     console.log({issue});
 });
 ```
@@ -173,14 +151,14 @@ youtrack.issues.executeCommand({
 
 ```typescript
 // get the configured workitem types for the project
-youtrack.projects.getWorkItemTypes('0-0').then(workItemTypes => {
+youtrack.projects.getWorkItemTypes('0-0').then((workItemTypes: WorkItemType[]) => {
     console.log({workItemTypes});
 });
 ```
 
 ```typescript
 // list the workitems of a project
-youtrack.workItems.all('T1-2').then(workItems => {
+youtrack.workItems.all('T1-2').then((workItems: WorkItem[]) => {
     console.log({workItems});
 });
 ```
@@ -224,7 +202,7 @@ youtrack.workItems.delete('T1-2', '116-3').then(() => {
 
 ```typescript
 // list comments of an issue
-youtrack.comments.all('T1-2').then(comments => {
+youtrack.comments.all('T1-2').then((comments: IssueComment[]) => {
     console.log({comments});
 });
 ```
@@ -252,5 +230,28 @@ youtrack.comments.update('T1-2', {
 // delete a comment
 youtrack.comments.delete('T1-2', '4-1').then(() => {
     console.log('comment deleted.');
+});
+```
+
+### Tags
+```typescript
+
+// get all tags
+youtrack.tags.all().then((tags: IssueTag[]) => {
+    console.log({tags});
+});
+
+// get tags available for user
+youtrack.tags.allForUser('1-1').then((tags: IssueTag[]) => {
+    console.log({tags});
+});
+
+// get tag by id
+youtrack.tags.byId('6-0').then((tag: IssueTag) => {
+    console.log({tag});
+});
+
+youtrack.tags.byIdForUser('1-1', '6-0').then((tag: IssueTag) => {
+    console.log({tag});
 });
 ```
