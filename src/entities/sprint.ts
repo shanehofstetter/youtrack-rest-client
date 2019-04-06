@@ -8,14 +8,13 @@ export class ReducedSprintImpl {
     start?: number = 0;
     finish?: number = 0;
     archived?: boolean = false;
-    agile?: ReducedAgile = new ReducedAgileImpl();
-    issues: ReducedIssue[] = [new ReducedIssueImpl()];
     unresolvedIssuesCount?: number = 0;
     previousSprint?: ReducedSprint = undefined;
-}
+} 
 
 export class SprintImpl extends ReducedSprintImpl {
-    issues: Issue[] = [new IssueImpl()];
+    agile?: ReducedAgile = new ReducedAgileImpl();
+    issues: ReducedIssue[] = [new ReducedIssueImpl()];
     isDefault: boolean = false;
 }
 
