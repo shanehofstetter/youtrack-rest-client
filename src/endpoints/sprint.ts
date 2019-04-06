@@ -2,9 +2,9 @@ import { BaseEndpoint } from "./base";
 import { Sprint, SprintImpl, ReducedSprint, ReducedSprintImpl, NewSprint, UpdateSprint } from "..";
 
 export const SprintPaths = {
-    sprints: '/agile/{agileId}/sprints',
-    sprint: '/agile/{agileId}/sprints/{sprintId}'
-}
+    sprints: '/agiles/{agileId}/sprints',
+    sprint: '/agiles/{agileId}/sprints/{sprintId}'
+};
 
 
 export class SprintEndpoint extends BaseEndpoint {

@@ -3,8 +3,8 @@ import { ReducedAgileImpl, Agile, AgileImpl, ReducedAgile, NewAgile, UpdateAgile
 
 export const AgilePaths = {
     agiles: '/agiles',
-    agile: '/agile/{agileId}'
-}
+    agile: '/agiles/{agileId}'
+};
 
 export class AgileEndpoint extends BaseEndpoint {
 

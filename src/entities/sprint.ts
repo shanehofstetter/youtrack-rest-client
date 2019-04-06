@@ -7,10 +7,10 @@ export class ReducedSprintImpl {
     goal?: string = '';
     start?: number = 0;
     finish?: number = 0;
-    archived: boolean = false;
+    archived?: boolean = false;
     agile?: ReducedAgile = new ReducedAgileImpl();
     issues: ReducedIssue[] = [new ReducedIssueImpl()];
-    unresolvedIssuesCount: number = 0;
+    unresolvedIssuesCount?: number = 0;
     previousSprint?: ReducedSprint = undefined;
 }
 
