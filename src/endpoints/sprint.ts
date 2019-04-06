@@ -28,7 +28,7 @@ export class SprintEndpoint extends BaseEndpoint {
     }
 
     public update(agileId: string, sprint: UpdateSprint): Promise<Sprint> {
-        return this.postResourceWithFields<Sprint>(this.format(SprintPaths.sprints, { 
+        return this.postResourceWithFields<Sprint>(this.format(SprintPaths.sprint, { 
             agileId, sprintId: sprint.id 
         }), SprintImpl, { 
             body: sprint 
