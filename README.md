@@ -2,7 +2,7 @@
 Client library for accessing the [youtrack rest api](https://www.jetbrains.com/help/youtrack/standalone/youtrack-rest-api-reference.html)
 
 [![Build Status](https://travis-ci.com/shanehofstetter/youtrack-rest-client.svg?branch=master)](https://travis-ci.com/shanehofstetter/youtrack-rest-client)
-![npm](https://img.shields.io/npm/v/youtrack-rest-client.svg)
+[![npm](https://img.shields.io/npm/v/youtrack-rest-client.svg)](https://www.npmjs.com/package/youtrack-rest-client)
 ![NpmLicense](https://img.shields.io/npm/l/youtrack-rest-client.svg)
 
 
