@@ -1,5 +1,5 @@
-import {ReducedUser, ReducedUserImpl} from "./user";
-import {ProjectCustomField, ProjectCustomFieldImpl} from "./projectCustomField";
+import { ReducedUser, ReducedUserImpl } from "./user";
+import { ProjectCustomField, ProjectCustomFieldImpl } from "./projectCustomField";
 
 export class ReducedProjectImpl {
     id?: string = '';

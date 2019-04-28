@@ -1,12 +1,12 @@
-import {BaseEndpoint} from "./base";
-import {ReducedProjectImpl, Project, ProjectImpl, ReducedProject} from "..";
+import { BaseEndpoint } from "./base";
+import { ReducedProjectImpl, Project, ProjectImpl, ReducedProject } from "..";
 import { WorkItemTypeImpl } from "../entities/workItem";
 
 export const ProjectPaths = {
     projects: '/admin/projects',
     project: '/admin/projects/{projectId}',
     workItemTypes: '/admin/projects/{projectId}/timeTrackingSettings/workItemTypes'
-}
+};
 
 export class ProjectEndpoint extends BaseEndpoint {
 
@@ -15,7 +15,7 @@ export class ProjectEndpoint extends BaseEndpoint {
     }
 
     public byId(projectId: string): Promise<Project> {
-        return this.getResourceWithFields<Project>(this.format(ProjectPaths.project, {projectId}), ProjectImpl);
+        return this.getResourceWithFields<Project>(this.format(ProjectPaths.project, { projectId }), ProjectImpl);
     }
 
     public getWorkItemTypes(projectId: string): Promise<WorkItemTypeImpl[]> {

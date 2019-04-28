@@ -1,4 +1,4 @@
-import {CustomField, CustomFieldImpl} from "./customField";
+import { CustomField, CustomFieldImpl } from "./customField";
 
 export class ProjectCustomFieldImpl {
     canBeEmpty: boolean = false;
@@ -11,5 +11,5 @@ export class ProjectCustomFieldImpl {
 }
 
 export interface ProjectCustomField extends ProjectCustomFieldImpl {
-    
+
 }

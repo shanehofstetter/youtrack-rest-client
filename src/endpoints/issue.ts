@@ -6,11 +6,11 @@ import { Command, CommandList, CommandListImpl } from "../entities/command";
 export const IssuePaths = {
     issue: '/issues/{issueId}',
     issues: '/issues',
-}
+};
 
 export const CommandPaths = {
     commands: '/commands'
-}
+};
 
 export class IssueEndpoint extends BaseEndpoint {
 

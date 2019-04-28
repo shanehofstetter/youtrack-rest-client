@@ -1,11 +1,11 @@
-import {BaseEndpoint} from "./base";
-import {ReducedUserImpl, ReducedUser, User, UserImpl} from "..";
+import { BaseEndpoint } from "./base";
+import { ReducedUserImpl, ReducedUser, User, UserImpl } from "..";
 
 export const UserPaths = {
     current: '/admin/users/me',
     users: '/admin/users',
     user: '/admin/users/{userId}'
-}
+};
 
 export class UserEndpoint extends BaseEndpoint {
 
@@ -18,6 +18,6 @@ export class UserEndpoint extends BaseEndpoint {
     }
 
     public byId(userId: string): Promise<User> {
-        return this.getResourceWithFields<User>(this.format(UserPaths.user, {userId}), UserImpl);
+        return this.getResourceWithFields<User>(this.format(UserPaths.user, { userId }), UserImpl);
     }
 }

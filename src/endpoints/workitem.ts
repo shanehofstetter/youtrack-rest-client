@@ -4,7 +4,7 @@ import { WorkItem, WorkItemImpl } from "..";
 export const WorkItemPaths = {
     workitems: '/issues/{issueId}/timeTracking/workItems',
     workitem: '/issues/{issueId}/timeTracking/workItems/{workItemId}'
-}
+};
 
 export class WorkItemEndpoint extends BaseEndpoint {
 
@@ -22,8 +22,8 @@ export class WorkItemEndpoint extends BaseEndpoint {
         return this.postResourceWithFields<WorkItem>(this.format(WorkItemPaths.workitem, {
             issueId, workItemId: workItem.id
         }), WorkItemImpl, {
-                body: workItem
-            });
+            body: workItem
+        });
     }
 
     public delete(issueId: string, workItemId: string): Promise<any> {

@@ -1,5 +1,5 @@
 import { ReducedAgile, ReducedAgileImpl } from "./agile";
-import { ReducedIssue, ReducedIssueImpl, Issue, IssueImpl } from "./issue"
+import { ReducedIssue, ReducedIssueImpl } from "./issue"
 
 export class ReducedSprintImpl {
     id?: string = '';
@@ -10,7 +10,7 @@ export class ReducedSprintImpl {
     archived?: boolean = false;
     unresolvedIssuesCount?: number = 0;
     previousSprint?: ReducedSprint = undefined;
-} 
+}
 
 export class SprintImpl extends ReducedSprintImpl {
     agile?: ReducedAgile = new ReducedAgileImpl();

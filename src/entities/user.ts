@@ -1,4 +1,4 @@
-import {ReducedIssueTag, ReducedIssueTagImpl} from "./issueTag";
+import { ReducedIssueTag, ReducedIssueTagImpl } from "./issueTag";
 
 export class ReducedUserImpl {
     email: string = '';

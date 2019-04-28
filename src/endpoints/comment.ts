@@ -4,7 +4,7 @@ import { IssueComment, IssueCommentImpl, UpdateIssueComment } from "../entities/
 export const CommentPaths = {
     comment: '/issues/{issueId}/comments/{commentId}',
     comments: '/issues/{issueId}/comments'
-}
+};
 
 export class CommentEndpoint extends BaseEndpoint {
 
@@ -23,8 +23,8 @@ export class CommentEndpoint extends BaseEndpoint {
             issueId,
             commentId: comment.id
         }), IssueCommentImpl, {
-                body: comment
-            });
+            body: comment
+        });
     }
 
     public delete(issueId: string, commentId: string): Promise<any> {

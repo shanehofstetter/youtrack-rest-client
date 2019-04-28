@@ -13,7 +13,7 @@ export class AgileEndpoint extends BaseEndpoint {
     }
 
     public byId(agileId: string): Promise<Agile> {
-        return this.getResourceWithFields<Agile>(this.format(AgilePaths.agile, {agileId}), AgileImpl);
+        return this.getResourceWithFields<Agile>(this.format(AgilePaths.agile, { agileId }), AgileImpl);
     }
 
     public delete(agileId: string): Promise<any> {
