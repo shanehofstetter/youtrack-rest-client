@@ -241,17 +241,8 @@ youtrack.tags.all().then((tags: IssueTag[]) => {
     console.log({tags});
 });
 
-// get tags available for user
-youtrack.tags.allForUser('1-1').then((tags: IssueTag[]) => {
-    console.log({tags});
-});
-
 // get tag by id
 youtrack.tags.byId('6-0').then((tag: IssueTag) => {
-    console.log({tag});
-});
-
-youtrack.tags.byIdForUser('1-1', '6-0').then((tag: IssueTag) => {
     console.log({tag});
 });
 ```

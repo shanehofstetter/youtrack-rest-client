@@ -46,8 +46,3 @@ export interface NewIssue extends Issue {
 export interface UpdateIssue extends Issue {
     id: string;
 }
-
-export interface IssueFilterOptions {
-    $skip?: number;
-    $top?: number;
-}

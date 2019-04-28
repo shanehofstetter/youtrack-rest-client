@@ -1,5 +1,6 @@
 import { BaseEndpoint } from "./base";
 import { IssueComment, IssueCommentImpl, UpdateIssueComment } from "../entities/comment";
+import { PaginationOptions } from "../options/pagination_options";
 
 export const CommentPaths = {
     comment: '/issues/{issueId}/comments/{commentId}',
@@ -8,8 +9,8 @@ export const CommentPaths = {
 
 export class CommentEndpoint extends BaseEndpoint {
 
-    public all(issueId: string): Promise<IssueComment[]> {
-        return this.getResourceWithFields<IssueComment[]>(this.format(CommentPaths.comments, { issueId }), IssueCommentImpl);
+    public all(issueId: string, paginationOptions: PaginationOptions = {}): Promise<IssueComment[]> {
+        return this.getResourceWithFields<IssueComment[]>(this.format(CommentPaths.comments, { issueId }), IssueCommentImpl, { qs: paginationOptions });
     }
 
     public create(issueId: string, comment: IssueComment): Promise<any> {

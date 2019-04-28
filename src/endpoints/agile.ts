@@ -1,5 +1,6 @@
 import { BaseEndpoint } from "./base";
 import { ReducedAgileImpl, Agile, AgileImpl, ReducedAgile, NewAgile, UpdateAgile } from "..";
+import { PaginationOptions } from "../options/pagination_options";
 
 export const AgilePaths = {
     agiles: '/agiles',
@@ -8,8 +9,8 @@ export const AgilePaths = {
 
 export class AgileEndpoint extends BaseEndpoint {
 
-    public all(): Promise<ReducedAgile[]> {
-        return this.getResourceWithFields<ReducedAgile[]>(AgilePaths.agiles, ReducedAgileImpl);
+    public all(paginationOptions: PaginationOptions = {}): Promise<ReducedAgile[]> {
+        return this.getResourceWithFields<ReducedAgile[]>(AgilePaths.agiles, ReducedAgileImpl, { qs: paginationOptions });
     }
 
     public byId(agileId: string): Promise<Agile> {

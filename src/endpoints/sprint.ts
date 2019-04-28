@@ -1,5 +1,6 @@
 import { BaseEndpoint } from "./base";
 import { Sprint, SprintImpl, ReducedSprint, ReducedSprintImpl, NewSprint, UpdateSprint } from "..";
+import { PaginationOptions } from "../options/pagination_options";
 
 export const SprintPaths = {
     sprints: '/agiles/{agileId}/sprints',
@@ -8,8 +9,8 @@ export const SprintPaths = {
 
 export class SprintEndpoint extends BaseEndpoint {
 
-    public all(agileId: string): Promise<ReducedSprint[]> {
-        return this.getResourceWithFields<ReducedSprint[]>(this.format(SprintPaths.sprints, { agileId }), ReducedSprintImpl);
+    public all(agileId: string, paginationOptions: PaginationOptions = {}): Promise<ReducedSprint[]> {
+        return this.getResourceWithFields<ReducedSprint[]>(this.format(SprintPaths.sprints, { agileId }), ReducedSprintImpl, { qs: paginationOptions });
     }
 
     public byId(agileId: string, sprintId: string): Promise<Sprint> {

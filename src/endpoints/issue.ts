@@ -1,7 +1,8 @@
 import { BaseEndpoint } from "./base";
-import { Issue, IssueFilterOptions, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue } from "..";
+import { Issue, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue } from "..";
 import { UpdateIssue } from "../entities/issue";
 import { Command, CommandList, CommandListImpl } from "../entities/command";
+import { PaginationOptions } from "../options/pagination_options";
 
 export const IssuePaths = {
     issue: '/issues/{issueId}',
@@ -18,11 +19,11 @@ export class IssueEndpoint extends BaseEndpoint {
         return this.getResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId }), IssueImpl);
     }
 
-    public search(query: string, filterOptions: IssueFilterOptions = {}): Promise<ReducedIssue[]> {
+    public search(query: string, paginationOptions: PaginationOptions = {}): Promise<ReducedIssue[]> {
         return this.getResourceWithFields<ReducedIssue[]>(IssuePaths.issues, ReducedIssueImpl, {
             qs: {
                 query,
-                ...filterOptions
+                ...paginationOptions
             }
         });
     }
