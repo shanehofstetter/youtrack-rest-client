@@ -247,6 +247,32 @@ youtrack.tags.byId('6-0').then((tag: IssueTag) => {
 });
 ```
 
+### [Issue Links](https://www.jetbrains.com/help/youtrack/incloud/api-entity-IssueLink.html)
+```typescript
+
+// get issue links of issue
+youtrack.issues.byId('P1-1').then((issue: Issue) => {
+    console.log({links: issue.links});
+});
+
+// update issue link(s)
+youtrack.issues.update({
+    id: 'P1-1',
+    links: [
+            {
+                issues: [
+                    {
+                        id: '2-3'
+                    }
+                ],
+                id: '92-1s',
+            }
+        ]
+}).then((issue: Issue) => {
+    console.log({links: issue.links});
+});
+```
+
 ### [Agiles](https://www.jetbrains.com/help/youtrack/incloud/api-entity-Agile.html)
 ```typescript
 

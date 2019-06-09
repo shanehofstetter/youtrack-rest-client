@@ -3,6 +3,7 @@ import { ReducedUser, ReducedUserImpl } from "./user";
 import { IssueTag, IssueTagImpl } from "./issueTag";
 import { ProjectCustomField, ProjectCustomFieldImpl } from "./projectCustomField";
 import { GenericObject } from "./fields/utils";
+import { IssueLink, IssueLinkImpl } from "./issueLink";
 
 export class IssueCustomFieldImpl {
     id: string = '';
@@ -32,6 +33,7 @@ export class IssueImpl extends ReducedIssueImpl {
     fields?: IssueCustomField[] = [new IssueCustomFieldImpl()];
     isDraft?: boolean = false;
     tags?: IssueTag[] = [new IssueTagImpl()];
+    links?: IssueLink[] = [new IssueLinkImpl()];
 }
 
 export interface Issue extends IssueImpl {
