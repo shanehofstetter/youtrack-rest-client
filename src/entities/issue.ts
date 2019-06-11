@@ -1,19 +1,8 @@
 import { ReducedProject, ReducedProjectImpl } from "./project";
 import { ReducedUser, ReducedUserImpl } from "./user";
 import { IssueTag, IssueTagImpl } from "./issueTag";
-import { ProjectCustomField, ProjectCustomFieldImpl } from "./projectCustomField";
-import { GenericObject } from "./fields/utils";
 import { IssueLink, IssueLinkImpl } from "./issueLink";
-
-export class IssueCustomFieldImpl {
-    id: string = '';
-    projectCustomField?: ProjectCustomField = new ProjectCustomFieldImpl();
-    value: GenericObject | null = null;
-    $type: string = '';
-}
-
-export interface IssueCustomField extends IssueCustomFieldImpl {
-}
+import { IssueCustomField, IssueCustomFieldImpl } from "./issueCustomField";
 
 export class ReducedIssueImpl {
     id?: string = '';
