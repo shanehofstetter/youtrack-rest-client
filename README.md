@@ -337,3 +337,13 @@ youtrack.sprints.delete(agileId, '105-2').then(() => {
 });
 
 ```
+
+## Contributing
+
+If you encounter any missing features or bugs, you're welcome to open an Issue! PRs are welcome too ;-)
+
+1. Fork it ( https://github.com/shanehofstetter/youtrack-rest-client/fork )
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
