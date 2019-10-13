@@ -20,6 +20,7 @@ export class IssueCustomFieldImpl {
     projectCustomField?: ProjectCustomField = new ProjectCustomFieldImpl();
     value: IssueCustomFieldValue | null = new IssueCustomFieldValueImpl();
     $type: string = '';
+    name: string = '';
 }
 
 export interface IssueCustomField extends IssueCustomFieldImpl {
