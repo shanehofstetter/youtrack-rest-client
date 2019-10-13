@@ -3,6 +3,7 @@ import { ReducedUser, ReducedUserImpl } from "./user";
 import { IssueTag, IssueTagImpl } from "./issueTag";
 import { IssueLink, IssueLinkImpl } from "./issueLink";
 import { IssueCustomField, IssueCustomFieldImpl } from "./issueCustomField";
+import { IssueComment, IssueCommentImpl } from "./comment";
 
 export class ReducedIssueImpl {
     id?: string = '';
@@ -23,6 +24,7 @@ export class IssueImpl extends ReducedIssueImpl {
     isDraft?: boolean = false;
     tags?: IssueTag[] = [new IssueTagImpl()];
     links?: IssueLink[] = [new IssueLinkImpl()];
+    comments?: IssueComment[] = [new IssueCommentImpl()];
 }
 
 export interface Issue extends IssueImpl {
