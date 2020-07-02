@@ -10,6 +10,7 @@ export class ReducedIssueImpl {
     numberInProject?: number = 0;
     created?: number = 0;
     updated?: number = 0;
+    resolved?: number = 0;
     project?: ReducedProject = new ReducedProjectImpl();
     summary?: string = '';
     description?: string = '';
