@@ -10,6 +10,7 @@ export class IssueCustomFieldValueImpl {
     avatarUrl?: string = '';
     isResolved?: boolean = false;
     color?: FieldStyle = new FieldStyleImpl();
+    text?: string = '';
 }
 
 export interface IssueCustomFieldValue extends IssueCustomFieldValueImpl {
