@@ -10,7 +10,8 @@
     "dev": "watch 'npm run build' src",
     "prepare": "npm run build",
     "prepublishOnly": "npm run test",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "version": "auto-changelog -p --hide-credit && git add CHANGELOG.md"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "@types/mocha": "^5.2.5",
     "@types/node": "^10.12.2",
     "@types/sinon": "^5.0.5",
+    "auto-changelog": "^2.4.0",
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "sinon": "^7.1.1",
