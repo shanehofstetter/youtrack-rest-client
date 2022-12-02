@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file. Dates are d
 
 - Bump lodash from 4.17.19 to 4.17.21 [`#20`](https://github.com/shanehofstetter/youtrack-rest-client/pull/20)
 - add changelog [`c0e1a40`](https://github.com/shanehofstetter/youtrack-rest-client/commit/c0e1a400a93b60dc41ec0dc9f33d98296c1cd3bc)
-- fetch minutes and presentation of time related custom field values [`58cd710`](https://github.com/shanehofstetter/youtrack-rest-client/commit/58cd7108c23cce0538569c6920f692146c8fac51)
+- update pathval [`04c176f`](https://github.com/shanehofstetter/youtrack-rest-client/commit/04c176fa28dc55d85760debcc51ce459db7c7275)
+- fetch minutes and presentation of time related custom field values [`72bd1f7`](https://github.com/shanehofstetter/youtrack-rest-client/commit/72bd1f7b588e0eed2bfae33910fd22550dcd39b7)
 
 #### [v1.4.0](https://github.com/shanehofstetter/youtrack-rest-client/compare/v1.3.2...v1.4.0)
 
