@@ -11,6 +11,8 @@ export class IssueCustomFieldValueImpl {
     isResolved?: boolean = false;
     color?: FieldStyle = new FieldStyleImpl();
     text?: string = '';
+    minutes?: number = 0;
+    presentation?: string = '';
 }
 
 export interface IssueCustomFieldValue extends IssueCustomFieldValueImpl {
