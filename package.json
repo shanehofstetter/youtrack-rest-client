@@ -11,8 +11,8 @@
     "prepare": "npm run build",
     "prepublishOnly": "npm run test",
     "postversion": "git push && git push --tags",
-    "update-changelog": "auto-changelog --unreleased --hide-credit",
-    "version": "auto-changelog -p --hide-credit && git add CHANGELOG.md"
+    "update-changelog": "auto-changelog --unreleased --hide-credit -l 99",
+    "version": "auto-changelog -p --hide-credit -l 99 && git add CHANGELOG.md"
   },
   "repository": {
     "type": "git",
