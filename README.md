@@ -3,7 +3,7 @@
 # youtrack-rest-client
 Client library for accessing the [youtrack rest api](https://www.jetbrains.com/help/youtrack/standalone/youtrack-rest-api-reference.html)
 
-[![Build Status](https://travis-ci.com/shanehofstetter/youtrack-rest-client.svg?branch=master)](https://travis-ci.com/shanehofstetter/youtrack-rest-client)
+[![📦 Build & Test](https://github.com/shanehofstetter/youtrack-rest-client/actions/workflows/test.yml/badge.svg)](https://github.com/shanehofstetter/youtrack-rest-client/actions/workflows/test.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/52753e2150c5097069ac/maintainability)](https://codeclimate.com/github/shanehofstetter/youtrack-rest-client/maintainability)
 [![npm](https://img.shields.io/npm/v/youtrack-rest-client.svg)](https://www.npmjs.com/package/youtrack-rest-client)
 ![NpmLicense](https://img.shields.io/npm/l/youtrack-rest-client.svg)
