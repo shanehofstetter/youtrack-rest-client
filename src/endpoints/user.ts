@@ -3,9 +3,9 @@ import { ReducedUserImpl, ReducedUser, User, UserImpl } from "..";
 import { PaginationOptions } from "../options/pagination_options";
 
 export const UserPaths = {
-    current: '/admin/users/me',
-    users: '/admin/users',
-    user: '/admin/users/{userId}'
+    current: '/users/me',
+    users: '/users',
+    user: '/users/{userId}'
 };
 
 export class UserEndpoint extends BaseEndpoint {
