@@ -2,9 +2,11 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
-#### [Unreleased](https://github.com/shanehofstetter/youtrack-rest-client/compare/v1.4.0...HEAD)
+#### [v1.5.0](https://github.com/shanehofstetter/youtrack-rest-client/compare/v1.4.0...v1.5.0)
 
 - Bump lodash from 4.17.19 to 4.17.21 [`#20`](https://github.com/shanehofstetter/youtrack-rest-client/pull/20)
+- Merge pull request #22 from Klipfolio/removeAdmin [`a62d2c0`](https://github.com/shanehofstetter/youtrack-rest-client/commit/a62d2c0e60a728530117b1cd26d8d670ab82af0c)
+- improve auto-changelog commands [`3c5f32c`](https://github.com/shanehofstetter/youtrack-rest-client/commit/3c5f32cdac0c223d736fdab83958b62188742111)
 - Merge pull request #28 from shanehofstetter/dependabot/npm_and_yarn/qs-6.5.3 [`c77775c`](https://github.com/shanehofstetter/youtrack-rest-client/commit/c77775c20af8b11c1bc89e8ba5c83cd7c798f501)
 - Bump qs from 6.5.2 to 6.5.3 [`7ac574c`](https://github.com/shanehofstetter/youtrack-rest-client/commit/7ac574cb409e80be19f49a99cafa104f1d674c15)
 - Merge pull request #26 from shanehofstetter/dependabot/npm_and_yarn/minimist-and-mocha-and-mkdirp-1.2.7 [`d55a2ca`](https://github.com/shanehofstetter/youtrack-rest-client/commit/d55a2ca8fba6dc67802bacfeb3e0ec97e0e967b2)
@@ -19,6 +21,7 @@ All notable changes to this project will be documented in this file. Dates are d
 - Merge pull request #27 from shanehofstetter/infra/github-action [`ec54c11`](https://github.com/shanehofstetter/youtrack-rest-client/commit/ec54c112624fd9d29c91bb2a1421adfb53b7bec3)
 - replace travis config with github workflow [`3d53148`](https://github.com/shanehofstetter/youtrack-rest-client/commit/3d531488c64c5783f7e55cfa03c9ed4bf0140089)
 - update pathval [`3a5e8e3`](https://github.com/shanehofstetter/youtrack-rest-client/commit/3a5e8e3b2f6f1a482211b1834e51a6ace49a3c03)
+- chore: remove /admin from the user paths [`ec75470`](https://github.com/shanehofstetter/youtrack-rest-client/commit/ec75470ab290df44b13eb61ecc10df3101d5bc4f)
 - fetch minutes and presentation of time related custom field values [`72bd1f7`](https://github.com/shanehofstetter/youtrack-rest-client/commit/72bd1f7b588e0eed2bfae33910fd22550dcd39b7)
 - add build step [`24729ac`](https://github.com/shanehofstetter/youtrack-rest-client/commit/24729ace88d5a10089056e5f0ccfe3aee50b0dd0)
 
