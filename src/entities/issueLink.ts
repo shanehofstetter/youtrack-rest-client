@@ -1,4 +1,4 @@
-import { ReducedIssue, ReducedIssueImpl } from "./issue";
+import {ReducedIssue, ReducedIssueImpl} from "./issue";
 
 export class IssueLinkTypeImpl {
     id?: string = '';

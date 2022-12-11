@@ -1,4 +1,4 @@
-import { CustomFieldDefaults, CustomFieldDefaultsImpl } from "./customFieldDefaults";
+import {CustomFieldDefaults, CustomFieldDefaultsImpl} from "./customFieldDefaults";
 
 export class CustomFieldImpl {
     aliases: string = '';

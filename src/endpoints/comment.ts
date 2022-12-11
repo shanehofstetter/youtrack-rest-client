@@ -1,6 +1,6 @@
-import { BaseEndpoint } from "./base";
-import { IssueComment, IssueCommentImpl, UpdateIssueComment } from "../entities/comment";
-import { PaginationOptions } from "../options/pagination_options";
+import {BaseEndpoint} from "./base";
+import {IssueComment, IssueCommentImpl, UpdateIssueComment} from "../entities/comment";
+import {PaginationOptions} from "../options/pagination_options";
 
 export const CommentPaths = {
     comment: '/issues/{issueId}/comments/{commentId}',
@@ -10,12 +10,12 @@ export const CommentPaths = {
 export class CommentEndpoint extends BaseEndpoint {
 
     public all(issueId: string, paginationOptions: PaginationOptions = {}): Promise<IssueComment[]> {
-        return this.getResourceWithFields<IssueComment[]>(this.format(CommentPaths.comments, { issueId }), IssueCommentImpl, { qs: paginationOptions });
+        return this.getResourceWithFields<IssueComment[]>(this.format(CommentPaths.comments, {issueId}), IssueCommentImpl, {params: paginationOptions});
     }
 
     public create(issueId: string, comment: IssueComment): Promise<any> {
-        return this.postResourceWithFields<IssueComment>(this.format(CommentPaths.comments, { issueId }), IssueCommentImpl, {
-            body: comment
+        return this.postResourceWithFields<IssueComment>(this.format(CommentPaths.comments, {issueId}), IssueCommentImpl, {
+            data: comment
         });
     }
 
@@ -24,11 +24,11 @@ export class CommentEndpoint extends BaseEndpoint {
             issueId,
             commentId: comment.id
         }), IssueCommentImpl, {
-            body: comment
+            data: comment
         });
     }
 
     public delete(issueId: string, commentId: string): Promise<any> {
-        return this.toPromise(this.client.delete(this.format(CommentPaths.comment, { issueId, commentId })));
+        return this.toPromise(this.client.delete(this.format(CommentPaths.comment, {issueId, commentId})));
     }
 }

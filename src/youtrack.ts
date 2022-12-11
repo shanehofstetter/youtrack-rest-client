@@ -1,45 +1,23 @@
 import {
     YoutrackTokenOptions
 } from "./options/youtrack_options";
-import * as request from "request-promise";
-import { RequestPromise } from "request-promise";
-import { UserEndpoint } from "./endpoints/user";
-import { TagEndpoint } from "./endpoints/tag";
-import { IssueEndpoint } from "./endpoints/issue";
-import { ProjectEndpoint } from "./endpoints/project";
-import { AgileEndpoint } from "./endpoints/agile";
-import { SprintEndpoint } from "./endpoints/sprint";
-import { WorkItemEndpoint } from "./endpoints/workitem";
-import { CommentEndpoint } from "./endpoints/comment";
-
-export interface YoutrackClient {
-
-    get(url: string, params?: {}, headers?: {}): RequestPromise;
-
-    post(url: string, params?: {}, headers?: {}): RequestPromise;
-
-    delete(url: string, params?: {}, headers?: {}): RequestPromise;
-
-    put(url: string, params?: {}, headers?: {}): RequestPromise;
-
-    readonly users: UserEndpoint;
-    readonly tags: TagEndpoint;
-    readonly issues: IssueEndpoint;
-    readonly projects: ProjectEndpoint;
-    readonly agiles: AgileEndpoint;
-    readonly sprints: SprintEndpoint;
-    readonly workItems: WorkItemEndpoint;
-    readonly comments: CommentEndpoint;
-}
-
-interface RequestOptions {
-    [key: string]: any;
-}
+import {UserEndpoint} from "./endpoints/user";
+import {TagEndpoint} from "./endpoints/tag";
+import {IssueEndpoint} from "./endpoints/issue";
+import {ProjectEndpoint} from "./endpoints/project";
+import {AgileEndpoint} from "./endpoints/agile";
+import {SprintEndpoint} from "./endpoints/sprint";
+import {WorkItemEndpoint} from "./endpoints/workitem";
+import {CommentEndpoint} from "./endpoints/comment";
+import {axiosInstance} from "./axios";
+import {AxiosRequestConfig} from "axios/index";
+import {YoutrackClient} from "./youtrack_client";
+import {GetRequestOptions, RequestOptions} from "./options/request_options";
 
 export class Youtrack implements YoutrackClient {
 
     private readonly baseUrl: string;
-    private defaultRequestOptions: RequestOptions = { jar: true, json: true };
+    private defaultRequestOptions: RequestOptions = {};
     public readonly users: UserEndpoint;
     public readonly tags: TagEndpoint;
     public readonly issues: IssueEndpoint;
@@ -67,20 +45,20 @@ export class Youtrack implements YoutrackClient {
         this.comments = new CommentEndpoint(this);
     }
 
-    public post(url: string, params = {}, headers: {} = {}): RequestPromise {
-        return request.post(this.baseUrl + url, this.prepareParams(params, headers));
+    public post(url: string, params: RequestOptions = {}, headers: {} = {}): Promise<any> {
+        return this.executeRequest('post', url, this.prepareParams(params, headers));
     }
 
-    public get(url: string, params = {}, headers = {}): RequestPromise {
-        return request.get(this.baseUrl + url, this.prepareParams(params, headers));
+    public get(url: string, params: GetRequestOptions = {}, headers = {}): Promise<any> {
+        return this.executeRequest('get', url, this.prepareParams(params, headers));
     }
 
-    public delete(url: string, params = {}, headers = {}): RequestPromise {
-        return request.delete(this.baseUrl + url, this.prepareParams(params, headers));
+    public delete(url: string, params: RequestOptions = {}, headers = {}): Promise<any> {
+        return this.executeRequest('delete', url, this.prepareParams(params, headers));
     }
 
-    public put(url: string, params = {}, headers = {}): RequestPromise {
-        return request.put(this.baseUrl + url, this.prepareParams(params, headers));
+    public put(url: string, params: RequestOptions = {}, headers = {}): Promise<any> {
+        return this.executeRequest('put', url, this.prepareParams(params, headers));
     }
 
     private formBaseUrl(baseUrl: string): string {
@@ -93,15 +71,21 @@ export class Youtrack implements YoutrackClient {
         return baseUrl;
     }
 
-    private prepareParams(params: {}, customHeaders: {}): {} {
-        if ('headers' in this.defaultRequestOptions && Object.keys(customHeaders).length > 0) {
-            // merge the header parameters
-            const { headers, ...defaultOptions } = this.defaultRequestOptions;
-            return { ...defaultOptions, ...params, headers: { ...headers, ...customHeaders } };
+    private prepareParams(params: RequestOptions, customHeaders: {}): AxiosRequestConfig {
+        let headers = {...customHeaders};
+        if (this.defaultRequestOptions.headers) {
+            headers = {...headers, ...this.defaultRequestOptions.headers};
         }
-        if ('headers' in this.defaultRequestOptions) {
-            return { ...this.defaultRequestOptions, ...params }
-        }
-        return { ...this.defaultRequestOptions, ...params, headers: { ...customHeaders } }
+
+        return {...params, headers: headers};
+    }
+
+    private executeRequest(method: string, url: string, params: AxiosRequestConfig): Promise<any> {
+        return axiosInstance({
+            method: method,
+            url: url,
+            baseURL: this.baseUrl,
+            ...params
+        }).then((res) => res.data);
     }
 }
