@@ -10,7 +10,7 @@ export const TagPaths = {
 export class TagEndpoint extends BaseEndpoint {
 
     public all(paginationOptions: PaginationOptions = {}): Promise<IssueTag[]> {
-        return this.getResourceWithFields<IssueTag[]>(TagPaths.issueTags, IssueTagImpl, { qs: paginationOptions });
+        return this.getResourceWithFields<IssueTag[]>(TagPaths.issueTags, IssueTagImpl, { params: paginationOptions });
     }
 
     public byId(tagId: string): Promise<IssueTag> {

@@ -10,12 +10,12 @@ export const WorkItemPaths = {
 export class WorkItemEndpoint extends BaseEndpoint {
 
     public all(issueId: string, paginationOptions: PaginationOptions = {}): Promise<WorkItem[]> {
-        return this.getResourceWithFields<WorkItem[]>(this.format(WorkItemPaths.workitems, { issueId }), WorkItemImpl, { qs: paginationOptions });
+        return this.getResourceWithFields<WorkItem[]>(this.format(WorkItemPaths.workitems, { issueId }), WorkItemImpl, { params: paginationOptions });
     }
 
     public create(issueId: string, workItem: WorkItem): Promise<WorkItem> {
         return this.postResourceWithFields<WorkItem>(this.format(WorkItemPaths.workitems, { issueId }), WorkItemImpl, {
-            body: workItem
+            data: workItem
         });
     }
 
@@ -23,7 +23,7 @@ export class WorkItemEndpoint extends BaseEndpoint {
         return this.postResourceWithFields<WorkItem>(this.format(WorkItemPaths.workitem, {
             issueId, workItemId: workItem.id
         }), WorkItemImpl, {
-            body: workItem
+            data: workItem
         });
     }
 

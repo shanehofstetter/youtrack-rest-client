@@ -10,12 +10,12 @@ export const CommentPaths = {
 export class CommentEndpoint extends BaseEndpoint {
 
     public all(issueId: string, paginationOptions: PaginationOptions = {}): Promise<IssueComment[]> {
-        return this.getResourceWithFields<IssueComment[]>(this.format(CommentPaths.comments, { issueId }), IssueCommentImpl, { qs: paginationOptions });
+        return this.getResourceWithFields<IssueComment[]>(this.format(CommentPaths.comments, { issueId }), IssueCommentImpl, { params: paginationOptions });
     }
 
     public create(issueId: string, comment: IssueComment): Promise<any> {
         return this.postResourceWithFields<IssueComment>(this.format(CommentPaths.comments, { issueId }), IssueCommentImpl, {
-            body: comment
+            data: comment
         });
     }
 
@@ -24,7 +24,7 @@ export class CommentEndpoint extends BaseEndpoint {
             issueId,
             commentId: comment.id
         }), IssueCommentImpl, {
-            body: comment
+            data: comment
         });
     }
 

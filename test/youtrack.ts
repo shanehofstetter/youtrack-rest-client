@@ -1,8 +1,7 @@
 import * as assert from 'assert';
-import {ReducedProjectImpl, Youtrack} from "../src";
-import sinon = require('sinon');
-import * as request from "request-promise";
-import {generateFieldsQuery} from "../src/entities/fields/utils";
+import {Youtrack} from "../src";
+import {axiosInstance} from "../src/axios";
+import MockAdapter from "axios-mock-adapter";
 
 describe("Youtrack", () => {
 
@@ -35,42 +34,32 @@ describe("Youtrack", () => {
 
             it('does put bearer token into header', () => {
                 const youtrack = new Youtrack(configWithToken);
-                let mockRequest = sinon.mock(request);
-                let expectation = mockRequest.expects("get").returns(Promise.resolve(null));
-                youtrack.projects.all();
-                assert(expectation.calledOnce);
-
-                const args = expectation.args[0];
-                assert(args[0] === '/api/admin/projects');
-                assert.deepStrictEqual(args[1], {
-                    jar: true,
-                    json: true,
-                    headers: {
-                        Authorization: 'Bearer testtoken'
-                    },
-                    qs: {fields: generateFieldsQuery(new ReducedProjectImpl())}
+                let mock = new MockAdapter(axiosInstance);
+                mock.onGet('/api/admin/projects').reply(200, [{id: 1, name: 'test'}]);
+                youtrack.projects.all().then((projects) => {
+                    assert.deepStrictEqual(projects, [{id: 1, name: 'test'}]);
                 });
+                assert.strictEqual(mock.history.get.length, 1);
+                assert.deepStrictEqual({...mock.history.get[0].headers}, {
+                    Accept: 'application/json, text/plain, */*',
+                    Authorization: 'Bearer testtoken'
+                });
+                assert.deepStrictEqual({...mock.history.get[0].params}, {fields: 'id,name,shortName,description,archived'})
             });
 
             describe('when providing custom header parameters', () => {
                 it('merges headers', () => {
                     const youtrack = new Youtrack(configWithToken);
-                    let mockRequest = sinon.mock(request);
-                    let expectation = mockRequest.expects("post").returns(Promise.resolve(null));
-                    youtrack.post("/some/resource", {body: "<example>test</example>"}, {'Content-Type': 'application/xml'});
-                    assert(expectation.calledOnce);
-
-                    const [[path, payload]] = expectation.args;
-                    assert(path === '/api/some/resource');
-                    assert.deepStrictEqual(payload, {
-                        jar: true,
-                        json: true,
-                        headers: {
-                            Authorization: 'Bearer testtoken',
-                            'Content-Type': 'application/xml'
-                        },
-                        body: "<example>test</example>"
+                    let mock = new MockAdapter(axiosInstance);
+                    mock.onPost('/some/resource').reply(200, {});
+                    youtrack.post("/some/resource", {data: "<example>test</example>"}, {'Content-Type': 'application/xml'});
+                    assert.strictEqual(mock.history.post.length, 1);
+                    assert.deepStrictEqual({...mock.history.post[0].headers}, {
+                        Accept: 'application/json, text/plain, */*',
+                        'Content-Type': 'application/xml',
+                        Authorization: 'Bearer testtoken'
                     });
+                    assert.strictEqual(mock.history.post[0].data, "<example>test</example>")
                 });
             });
         });

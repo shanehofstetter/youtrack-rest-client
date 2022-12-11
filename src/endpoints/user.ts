@@ -15,7 +15,7 @@ export class UserEndpoint extends BaseEndpoint {
     }
 
     public all(paginationOptions: PaginationOptions = {}): Promise<ReducedUser[]> {
-        return this.getResourceWithFields<ReducedUser[]>(UserPaths.users, ReducedUserImpl, { qs: paginationOptions });
+        return this.getResourceWithFields<ReducedUser[]>(UserPaths.users, ReducedUserImpl, { params: paginationOptions });
     }
 
     public byId(userId: string): Promise<User> {

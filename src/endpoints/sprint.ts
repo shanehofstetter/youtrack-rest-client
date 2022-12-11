@@ -10,7 +10,7 @@ export const SprintPaths = {
 export class SprintEndpoint extends BaseEndpoint {
 
     public all(agileId: string, paginationOptions: PaginationOptions = {}): Promise<ReducedSprint[]> {
-        return this.getResourceWithFields<ReducedSprint[]>(this.format(SprintPaths.sprints, { agileId }), ReducedSprintImpl, { qs: paginationOptions });
+        return this.getResourceWithFields<ReducedSprint[]>(this.format(SprintPaths.sprints, { agileId }), ReducedSprintImpl, { params: paginationOptions });
     }
 
     public byId(agileId: string, sprintId: string): Promise<Sprint> {
@@ -23,7 +23,7 @@ export class SprintEndpoint extends BaseEndpoint {
 
     public create(agileId: string, sprint: NewSprint): Promise<Sprint> {
         return this.postResourceWithFields<Sprint>(this.format(SprintPaths.sprints, { agileId }), SprintImpl, {
-            body: sprint
+            data: sprint
         });
     }
 
@@ -31,7 +31,7 @@ export class SprintEndpoint extends BaseEndpoint {
         return this.postResourceWithFields<Sprint>(this.format(SprintPaths.sprint, {
             agileId, sprintId: sprint.id
         }), SprintImpl, {
-            body: sprint
+            data: sprint
         });
     }
 }

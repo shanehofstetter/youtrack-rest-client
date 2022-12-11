@@ -21,7 +21,7 @@ export class IssueEndpoint extends BaseEndpoint {
 
     public search(query: string, paginationOptions: PaginationOptions = {}): Promise<ReducedIssue[]> {
         return this.getResourceWithFields<ReducedIssue[]>(IssuePaths.issues, ReducedIssueImpl, {
-            qs: {
+            params: {
                 query,
                 ...paginationOptions
             }
@@ -34,19 +34,19 @@ export class IssueEndpoint extends BaseEndpoint {
 
     public create(issue: NewIssue): Promise<Issue> {
         return this.postResourceWithFields<Issue>(IssuePaths.issues, IssueImpl, {
-            body: issue
+            data: issue
         });
     }
 
     public update(issue: UpdateIssue): Promise<Issue> {
         return this.postResourceWithFields<Issue>(this.format(IssuePaths.issue, { issueId: issue.id }), IssueImpl, {
-            body: issue
+            data: issue
         });
     }
 
     public executeCommand(command: Command): Promise<CommandList> {
         return this.postResourceWithFields<CommandList>(CommandPaths.commands, CommandListImpl, {
-            body: command
+            data: command
         });
     }
 }
