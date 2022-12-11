@@ -46,35 +46,19 @@ export class Youtrack implements YoutrackClient {
     }
 
     public post(url: string, params: RequestOptions = {}, headers: {} = {}): Promise<any> {
-        return axiosInstance({
-            method: 'post',
-            url: url,
-            baseURL: this.baseUrl, ...this.prepareParams(params, headers)
-        }).then((res) => res.data);
+        return this.executeRequest('post', url, this.prepareParams(params, headers));
     }
 
     public get(url: string, params: GetRequestOptions = {}, headers = {}): Promise<any> {
-        return axiosInstance({
-            method: 'get',
-            url: url,
-            baseURL: this.baseUrl, ...this.prepareParams(params, headers)
-        }).then((res) => res.data);
+        return this.executeRequest('get', url, this.prepareParams(params, headers));
     }
 
     public delete(url: string, params: RequestOptions = {}, headers = {}): Promise<any> {
-        return axiosInstance({
-            method: 'delete',
-            url: url,
-            baseURL: this.baseUrl, ...this.prepareParams(params, headers)
-        }).then((res) => res.data);
+        return this.executeRequest('delete', url, this.prepareParams(params, headers));
     }
 
     public put(url: string, params: RequestOptions = {}, headers = {}): Promise<any> {
-        return axiosInstance({
-            method: 'put',
-            url: url,
-            baseURL: this.baseUrl, ...this.prepareParams(params, headers)
-        }).then((res) => res.data);
+        return this.executeRequest('put', url, this.prepareParams(params, headers));
     }
 
     private formBaseUrl(baseUrl: string): string {
@@ -94,5 +78,14 @@ export class Youtrack implements YoutrackClient {
         }
 
         return {...params, headers: headers};
+    }
+
+    private executeRequest(method: string, url: string, params: AxiosRequestConfig): Promise<any> {
+        return axiosInstance({
+            method: method,
+            url: url,
+            baseURL: this.baseUrl,
+            ...params
+        }).then((res) => res.data);
     }
 }
