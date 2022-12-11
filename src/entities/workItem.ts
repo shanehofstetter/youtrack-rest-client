@@ -1,5 +1,5 @@
-import { ReducedIssue, ReducedIssueImpl } from "./issue";
-import { ReducedUserImpl, ReducedUser } from "./user";
+import {ReducedIssue, ReducedIssueImpl} from "./issue";
+import {ReducedUserImpl, ReducedUser} from "./user";
 
 export class DurationValueImpl {
     presentation?: string = '';

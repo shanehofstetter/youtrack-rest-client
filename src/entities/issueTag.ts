@@ -1,4 +1,4 @@
-import { ReducedUser, ReducedUserImpl } from "./user";
+import {ReducedUser, ReducedUserImpl} from "./user";
 
 export class ReducedIssueTagImpl {
     name: string = '';

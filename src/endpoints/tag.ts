@@ -1,6 +1,6 @@
-import { BaseEndpoint } from "./base";
-import { IssueTag, IssueTagImpl } from "../entities/issueTag";
-import { PaginationOptions } from "../options/pagination_options";
+import {BaseEndpoint} from "./base";
+import {IssueTag, IssueTagImpl} from "../entities/issueTag";
+import {PaginationOptions} from "../options/pagination_options";
 
 export const TagPaths = {
     issueTags: '/issueTags',
@@ -10,10 +10,10 @@ export const TagPaths = {
 export class TagEndpoint extends BaseEndpoint {
 
     public all(paginationOptions: PaginationOptions = {}): Promise<IssueTag[]> {
-        return this.getResourceWithFields<IssueTag[]>(TagPaths.issueTags, IssueTagImpl, { params: paginationOptions });
+        return this.getResourceWithFields<IssueTag[]>(TagPaths.issueTags, IssueTagImpl, {params: paginationOptions});
     }
 
     public byId(tagId: string): Promise<IssueTag> {
-        return this.getResourceWithFields<IssueTag>(this.format(TagPaths.issueTag, { tagId }), IssueTagImpl);
+        return this.getResourceWithFields<IssueTag>(this.format(TagPaths.issueTag, {tagId}), IssueTagImpl);
     }
 }

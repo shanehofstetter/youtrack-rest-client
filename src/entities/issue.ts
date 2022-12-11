@@ -1,9 +1,9 @@
-import { ReducedProject, ReducedProjectImpl } from "./project";
-import { ReducedUser, ReducedUserImpl } from "./user";
-import { IssueTag, IssueTagImpl } from "./issueTag";
-import { IssueLink, IssueLinkImpl } from "./issueLink";
-import { IssueCustomField, IssueCustomFieldImpl } from "./issueCustomField";
-import { IssueComment, IssueCommentImpl } from "./comment";
+import {ReducedProject, ReducedProjectImpl} from "./project";
+import {ReducedUser, ReducedUserImpl} from "./user";
+import {IssueTag, IssueTagImpl} from "./issueTag";
+import {IssueLink, IssueLinkImpl} from "./issueLink";
+import {IssueCustomField, IssueCustomFieldImpl} from "./issueCustomField";
+import {IssueComment, IssueCommentImpl} from "./comment";
 
 export class ReducedIssueImpl {
     id?: string = '';

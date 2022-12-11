@@ -1,5 +1,5 @@
-import { ReducedAgile, ReducedAgileImpl } from "./agile";
-import { ReducedIssue, ReducedIssueImpl } from "./issue"
+import {ReducedAgile, ReducedAgileImpl} from "./agile";
+import {ReducedIssue, ReducedIssueImpl} from "./issue"
 
 export class ReducedSprintImpl {
     id?: string = '';

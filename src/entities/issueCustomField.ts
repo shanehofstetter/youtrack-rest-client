@@ -1,5 +1,5 @@
-import { FieldStyle, FieldStyleImpl } from "./fieldStyle";
-import { ProjectCustomField, ProjectCustomFieldImpl } from "./projectCustomField";
+import {FieldStyle, FieldStyleImpl} from "./fieldStyle";
+import {ProjectCustomField, ProjectCustomFieldImpl} from "./projectCustomField";
 
 export class IssueCustomFieldValueImpl {
     id?: string = '';

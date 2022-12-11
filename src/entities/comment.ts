@@ -1,5 +1,5 @@
-import { ReducedUserImpl, ReducedUser } from "./user";
-import { ReducedIssue, ReducedIssueImpl } from "./issue";
+import {ReducedUserImpl, ReducedUser} from "./user";
+import {ReducedIssue, ReducedIssueImpl} from "./issue";
 
 // TODO: add attachment and visibilty typings
 export class IssueCommentImpl {

@@ -1,6 +1,6 @@
-import { ReducedProject, ReducedProjectImpl } from "./project";
-import { ReducedUser, ReducedUserImpl } from "./user";
-import { ReducedSprint, ReducedSprintImpl } from "./sprint";
+import {ReducedProject, ReducedProjectImpl} from "./project";
+import {ReducedUser, ReducedUserImpl} from "./user";
+import {ReducedSprint, ReducedSprintImpl} from "./sprint";
 
 export class ReducedAgileImpl {
     id?: string = '';

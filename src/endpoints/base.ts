@@ -1,6 +1,7 @@
-import {GetRequestOptions, RequestOptions, YoutrackClient} from "../youtrack";
 import * as format from "string-template";
-import { generateFieldsQuery, GenericObject } from "../entities/fields/utils";
+import {generateFieldsQuery, GenericObject} from "../entities/fields/utils";
+import {GetRequestOptions, RequestOptions} from "../options/request_options";
+import {YoutrackClient} from "../youtrack_client";
 
 export class BaseEndpoint {
     public constructor(protected client: YoutrackClient) {
@@ -12,7 +13,7 @@ export class BaseEndpoint {
 
     protected toPromise<T>(request: Promise<any>): Promise<T> {
         return Promise.resolve(request.then((response) => response)
-          .catch(error => Promise.reject(error)));
+            .catch(error => Promise.reject(error)));
     }
 
     protected getResource<T>(url: string, params: GetRequestOptions = {}): Promise<T> {

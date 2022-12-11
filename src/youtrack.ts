@@ -11,32 +11,8 @@ import {WorkItemEndpoint} from "./endpoints/workitem";
 import {CommentEndpoint} from "./endpoints/comment";
 import {axiosInstance} from "./axios";
 import {AxiosRequestConfig} from "axios/index";
-
-export interface YoutrackClient {
-
-    get(url: string, params?: RequestOptions, headers?: {}): Promise<any>;
-
-    post(url: string, params?: RequestOptions, headers?: {}): Promise<any>;
-
-    delete(url: string, params?: RequestOptions, headers?: {}): Promise<any>;
-
-    put(url: string, params?: RequestOptions, headers?: {}): Promise<any>;
-
-    readonly users: UserEndpoint;
-    readonly tags: TagEndpoint;
-    readonly issues: IssueEndpoint;
-    readonly projects: ProjectEndpoint;
-    readonly agiles: AgileEndpoint;
-    readonly sprints: SprintEndpoint;
-    readonly workItems: WorkItemEndpoint;
-    readonly comments: CommentEndpoint;
-}
-
-export interface RequestOptions extends Pick<AxiosRequestConfig, "headers" | "params" | "data"> {
-}
-
-export interface GetRequestOptions extends Pick<RequestOptions, "headers" | "params"> {
-}
+import {YoutrackClient} from "./youtrack_client";
+import {GetRequestOptions, RequestOptions} from "./options/request_options";
 
 export class Youtrack implements YoutrackClient {
 
@@ -77,7 +53,7 @@ export class Youtrack implements YoutrackClient {
         }).then((res) => res.data);
     }
 
-    public get(url: string, params: RequestOptions = {}, headers = {}): Promise<any> {
+    public get(url: string, params: GetRequestOptions = {}, headers = {}): Promise<any> {
         return axiosInstance({
             method: 'get',
             url: url,

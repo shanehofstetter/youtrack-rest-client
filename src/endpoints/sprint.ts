@@ -1,6 +1,6 @@
-import { BaseEndpoint } from "./base";
-import { Sprint, SprintImpl, ReducedSprint, ReducedSprintImpl, NewSprint, UpdateSprint } from "..";
-import { PaginationOptions } from "../options/pagination_options";
+import {BaseEndpoint} from "./base";
+import {Sprint, SprintImpl, ReducedSprint, ReducedSprintImpl, NewSprint, UpdateSprint} from "..";
+import {PaginationOptions} from "../options/pagination_options";
 
 export const SprintPaths = {
     sprints: '/agiles/{agileId}/sprints',
@@ -10,19 +10,19 @@ export const SprintPaths = {
 export class SprintEndpoint extends BaseEndpoint {
 
     public all(agileId: string, paginationOptions: PaginationOptions = {}): Promise<ReducedSprint[]> {
-        return this.getResourceWithFields<ReducedSprint[]>(this.format(SprintPaths.sprints, { agileId }), ReducedSprintImpl, { params: paginationOptions });
+        return this.getResourceWithFields<ReducedSprint[]>(this.format(SprintPaths.sprints, {agileId}), ReducedSprintImpl, {params: paginationOptions});
     }
 
     public byId(agileId: string, sprintId: string): Promise<Sprint> {
-        return this.getResourceWithFields<Sprint>(this.format(SprintPaths.sprint, { agileId, sprintId }), SprintImpl);
+        return this.getResourceWithFields<Sprint>(this.format(SprintPaths.sprint, {agileId, sprintId}), SprintImpl);
     }
 
     public delete(agileId: string, sprintId: string): Promise<any> {
-        return this.toPromise(this.client.delete(this.format(SprintPaths.sprint, { agileId, sprintId })));
+        return this.toPromise(this.client.delete(this.format(SprintPaths.sprint, {agileId, sprintId})));
     }
 
     public create(agileId: string, sprint: NewSprint): Promise<Sprint> {
-        return this.postResourceWithFields<Sprint>(this.format(SprintPaths.sprints, { agileId }), SprintImpl, {
+        return this.postResourceWithFields<Sprint>(this.format(SprintPaths.sprints, {agileId}), SprintImpl, {
             data: sprint
         });
     }

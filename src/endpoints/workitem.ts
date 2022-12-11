@@ -1,6 +1,6 @@
-import { BaseEndpoint } from "./base";
-import { WorkItem, WorkItemImpl } from "..";
-import { PaginationOptions } from "../options/pagination_options";
+import {BaseEndpoint} from "./base";
+import {WorkItem, WorkItemImpl} from "..";
+import {PaginationOptions} from "../options/pagination_options";
 
 export const WorkItemPaths = {
     workitems: '/issues/{issueId}/timeTracking/workItems',
@@ -10,11 +10,11 @@ export const WorkItemPaths = {
 export class WorkItemEndpoint extends BaseEndpoint {
 
     public all(issueId: string, paginationOptions: PaginationOptions = {}): Promise<WorkItem[]> {
-        return this.getResourceWithFields<WorkItem[]>(this.format(WorkItemPaths.workitems, { issueId }), WorkItemImpl, { params: paginationOptions });
+        return this.getResourceWithFields<WorkItem[]>(this.format(WorkItemPaths.workitems, {issueId}), WorkItemImpl, {params: paginationOptions});
     }
 
     public create(issueId: string, workItem: WorkItem): Promise<WorkItem> {
-        return this.postResourceWithFields<WorkItem>(this.format(WorkItemPaths.workitems, { issueId }), WorkItemImpl, {
+        return this.postResourceWithFields<WorkItem>(this.format(WorkItemPaths.workitems, {issueId}), WorkItemImpl, {
             data: workItem
         });
     }
