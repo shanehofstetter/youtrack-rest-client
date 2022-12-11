@@ -36,7 +36,7 @@ export class BaseEndpoint {
     protected postResourceWithFields<T>(url: string, implementation: new () => object, options: RequestOptions = {}): Promise<T> {
         return this.postResource(url, {
             ...options,
-            data: {
+            params: {
                 fields: generateFieldsQuery(new implementation()),
                 ...(options.params || {})
             }
