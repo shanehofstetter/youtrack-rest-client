@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file. Dates are displayed in UTC.
 
+#### [v1.6.0](https://github.com/shanehofstetter/youtrack-rest-client/compare/v1.5.0...v1.6.0)
+
+- Merge pull request #29 from shanehofstetter/features/replace-request [`dcc003e`](https://github.com/shanehofstetter/youtrack-rest-client/commit/dcc003e09fe27f25b965bca38650408926b52d23)
+- replace request with axios [`06c1777`](https://github.com/shanehofstetter/youtrack-rest-client/commit/06c17773c109d903a950d4a89575441658ac5c73)
+- extract interfaces, format [`ad581e7`](https://github.com/shanehofstetter/youtrack-rest-client/commit/ad581e7392ff79b25295c051cf60b5643d7667ca)
+
 #### [v1.5.0](https://github.com/shanehofstetter/youtrack-rest-client/compare/v1.4.0...v1.5.0)
+
+> 8 December 2022
 
 - Bump lodash from 4.17.19 to 4.17.21 [`#20`](https://github.com/shanehofstetter/youtrack-rest-client/pull/20)
 - Merge pull request #22 from Klipfolio/removeAdmin [`a62d2c0`](https://github.com/shanehofstetter/youtrack-rest-client/commit/a62d2c0e60a728530117b1cd26d8d670ab82af0c)
