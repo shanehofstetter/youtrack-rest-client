@@ -8,6 +8,7 @@ Client library for the [youtrack rest api](https://www.jetbrains.com/help/youtra
 [![npm](https://img.shields.io/npm/v/youtrack-rest-client.svg)](https://www.npmjs.com/package/youtrack-rest-client)
 ![NpmLicense](https://img.shields.io/npm/l/youtrack-rest-client.svg)
 
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate/?business=PB26QWEQQ3RE4&no_recurring=0&item_name=Support+my+open+source+work+on+github+%E2%9D%A4%EF%B8%8F&currency_code=USD)
 
 ## Install
 ```
