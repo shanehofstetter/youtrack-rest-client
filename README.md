@@ -29,7 +29,11 @@ import {Youtrack} from "youtrack-rest-client";
 
 const config = {
     baseUrl: "http://example.myjetbrains.com", 
-    token: "perm:your-token"
+    token: "perm:your-token",
+    // optional
+    axiosInstance: axios.create({
+        // your config here
+    })
 };
 const youtrack = new Youtrack(config);
 ```
