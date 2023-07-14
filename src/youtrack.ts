@@ -9,14 +9,15 @@ import {AgileEndpoint} from "./endpoints/agile";
 import {SprintEndpoint} from "./endpoints/sprint";
 import {WorkItemEndpoint} from "./endpoints/workitem";
 import {CommentEndpoint} from "./endpoints/comment";
-import {axiosInstance} from "./axios";
-import {AxiosRequestConfig} from "axios/index";
+import axios from "axios";
+import {AxiosRequestConfig, AxiosInstance} from "axios/index";
 import {YoutrackClient} from "./youtrack_client";
 import {GetRequestOptions, RequestOptions} from "./options/request_options";
 
 export class Youtrack implements YoutrackClient {
 
     private readonly baseUrl: string;
+    private readonly axiosInstance: AxiosInstance;
     private defaultRequestOptions: RequestOptions = {};
     public readonly users: UserEndpoint;
     public readonly tags: TagEndpoint;
@@ -35,6 +36,7 @@ export class Youtrack implements YoutrackClient {
             }
         };
         this.baseUrl = this.formBaseUrl(options.baseUrl);
+        this.axiosInstance = options.axiosInstance || axios.create();
         this.users = new UserEndpoint(this);
         this.tags = new TagEndpoint(this);
         this.issues = new IssueEndpoint(this);
@@ -81,7 +83,7 @@ export class Youtrack implements YoutrackClient {
     }
 
     private executeRequest(method: string, url: string, params: AxiosRequestConfig): Promise<any> {
-        return axiosInstance({
+        return this.axiosInstance({
             method: method,
             url: url,
             baseURL: this.baseUrl,
