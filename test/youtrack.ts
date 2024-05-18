@@ -106,6 +106,11 @@ describe("Youtrack", () => {
                     params: {fields: generateFieldsQuery(new ReducedIssueImpl()), query: 'test'}
                 },
                 {
+                    path: IssuePaths.issues,
+                    action: () => youtrack.issues.searchIssues("test"),
+                    params: {fields: generateFieldsQuery(new IssueImpl()), query: 'test'}
+                },
+                {
                     path: format(SprintPaths.sprints, {agileId: 'test'}),
                     action: () => youtrack.sprints.all("test"),
                     params: {fields: generateFieldsQuery(new ReducedSprintImpl())}
