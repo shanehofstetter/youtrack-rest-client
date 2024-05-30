@@ -8,6 +8,7 @@ import {IssueComment, IssueCommentImpl} from "./comment";
 export class ReducedIssueImpl {
     id?: string = '';
     numberInProject?: number = 0;
+    idReadable?: string = '';
     created?: number = 0;
     updated?: number = 0;
     resolved?: number = 0;

@@ -1,5 +1,5 @@
 import {BaseEndpoint} from "./base";
-import {Issue, IssueImpl, ReducedIssue, ReducedIssueImpl, NewIssue} from "..";
+import {Issue, IssueImpl, NewIssue, ReducedIssue, ReducedIssueImpl} from "..";
 import {UpdateIssue} from "../entities/issue";
 import {Command, CommandList, CommandListImpl} from "../entities/command";
 import {PaginationOptions} from "../options/pagination_options";
@@ -21,6 +21,14 @@ export class IssueEndpoint extends BaseEndpoint {
 
     public search(query: string, paginationOptions: PaginationOptions = {}): Promise<ReducedIssue[]> {
         return this.getResourceWithFields<ReducedIssue[]>(IssuePaths.issues, ReducedIssueImpl, {
+            params: {
+                query,
+                ...paginationOptions
+            }
+        });
+    }
+    public searchIssues<Issue>(query: string, paginationOptions: PaginationOptions = {}): Promise<Issue[]> {
+        return this.getResourceWithFields<Issue[]>(IssuePaths.issues, IssueImpl, {
             params: {
                 query,
                 ...paginationOptions
